@@ -1,0 +1,257 @@
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* =============================================
+   CSS CUSTOM PROPERTIES — DARK (default)
+   ============================================= */
+:root {
+  --font-syne: "Syne", sans-serif;
+  --font-dm: "DM Sans", sans-serif;
+  --font-mono: "DM Mono", monospace;
+  --accent: #0be7ff;
+  --accent-warm: #ff3a5c;
+  --c-bg:       #080808;
+  --c-surface:  #0f0f0f;
+  --c-surface2: #0a0a0a;
+  --c-border:   #1e1e1e;
+  --c-text:     #e8e8e8;
+  --c-text2:    #aaaaaa;
+  --c-text3:    #777777;
+  --c-text4:    #555555;
+  --c-ghost:    #282828;
+  --c-stroke:   rgba(255,255,255,0.05);
+}
+
+/* =============================================
+   CSS CUSTOM PROPERTIES — LIGHT
+   ============================================= */
+html.light {
+  --c-bg:       #f2f0ea;
+  --c-surface:  #e8e6e0;
+  --c-surface2: #ededea;
+  --c-border:   #cccac4;
+  --c-text:     #111111;
+  --c-text2:    #333333;
+  --c-text3:    #555555;
+  --c-text4:    #777777;
+  --c-ghost:    #d6d4ce;
+  --c-stroke:   rgba(0,0,0,0.06);
+}
+
+/* =============================================
+   BASE
+   ============================================= */
+*, *::before, *::after {
+  cursor: none !important;
+  box-sizing: border-box;
+}
+
+html { scroll-behavior: auto; }
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-dm);
+  overflow-x: hidden;
+  line-height: 1.6;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* =============================================
+   LIGHT MODE — TAILWIND CLASS OVERRIDES
+   ============================================= */
+
+/* Text */
+html.light .text-white              { color: #111111 !important; }
+html.light .text-\[\#f0f0f0\]       { color: #111111 !important; }
+html.light .text-\[\#e8e8e8\]       { color: #111111 !important; }
+html.light .text-\[\#aaa\]          { color: #333333 !important; }
+html.light .text-\[\#aaaaaa\]       { color: #333333 !important; }
+html.light .text-\[\#888\]          { color: #444444 !important; }
+html.light .text-\[\#888888\]       { color: #444444 !important; }
+html.light .text-\[\#777\]          { color: #555555 !important; }
+html.light .text-\[\#777777\]       { color: #555555 !important; }
+html.light .text-\[\#666\]          { color: #444444 !important; }
+html.light .text-\[\#666666\]       { color: #444444 !important; }
+html.light .text-\[\#555\]          { color: #333333 !important; }
+html.light .text-\[\#555555\]       { color: #333333 !important; }
+html.light .text-\[\#444\]          { color: #555555 !important; }
+html.light .text-\[\#444444\]       { color: #555555 !important; }
+html.light .text-\[\#333\]          { color: #666666 !important; }
+html.light .text-\[\#333333\]       { color: #666666 !important; }
+html.light .text-\[\#222\]          { color: #888888 !important; }
+html.light .text-\[\#222222\]       { color: #888888 !important; }
+html.light .text-\[\#1a1a1a\]       { color: #999999 !important; }
+html.light .text-\[\#111\]          { color: #aaaaaa !important; }
+html.light .text-\[\#111111\]       { color: #999999 !important; }
+
+/* Backgrounds */
+html.light .bg-\[\#080808\]         { background-color: #f2f0ea !important; }
+html.light .bg-\[\#0a0a0a\]         { background-color: #eceae3 !important; }
+html.light .bg-\[\#0f0f0f\]         { background-color: #e6e4dd !important; }
+html.light .bg-\[\#111\]            { background-color: #e0ded7 !important; }
+html.light .bg-\[\#111111\]         { background-color: #e0ded7 !important; }
+html.light .bg-\[\#1c1c1c\]         { background-color: #d8d6cf !important; }
+
+/* Borders */
+html.light .border-\[\#1c1c1c\]     { border-color: #cccac3 !important; }
+html.light .border-\[\#1a1a1a\]     { border-color: #d0cec7 !important; }
+html.light .border-\[\#1e1e1e\]     { border-color: #ceccc5 !important; }
+html.light .border-\[\#111\]        { border-color: #d6d4cd !important; }
+html.light .border-\[\#111111\]     { border-color: #d6d4cd !important; }
+html.light .border-\[\#333\]        { border-color: #bebcb5 !important; }
+html.light .border-\[\#222\]        { border-color: #c8c6bf !important; }
+
+/* Nav backdrop */
+html.light .backdrop-blur-md        { background-color: rgba(242,240,234,0.88) !important; }
+
+/* Accent colors stay (slightly deepened for light bg contrast) */
+html.light .text-\[\#0BE7FF\]       { color: #0099bb !important; }
+html.light .text-\[\#0be7ff\]       { color: #0099bb !important; }
+html.light .text-\[\#FF3A5C\]       { color: #cc2244 !important; }
+html.light .text-\[\#ff3a5c\]       { color: #cc2244 !important; }
+html.light .bg-\[\#0BE7FF\]         { background-color: #0099bb !important; }
+html.light .bg-\[\#0be7ff\]         { background-color: #0099bb !important; }
+html.light .border-\[\#0BE7FF\]     { border-color: #0099bb !important; }
+html.light .border-\[\#0be7ff\]     { border-color: #0099bb !important; }
+
+/* Full-screen menu overlay bg */
+html.light .fixed.inset-0.bg-\[\#0a0a0a\] { background-color: #f2f0ea !important; }
+
+/* Menu link text */
+html.light .menu-link-text          { color: #111111 !important; }
+html.light .menu-link-text:hover    { color: #0099bb !important; }
+
+/* =============================================
+   DARK MODE — LEGIBILITY BUMPS
+   Very dark grays were almost invisible on #080808
+   ============================================= */
+html:not(.light) .text-\[\#333\]    { color: #666666 !important; }
+html:not(.light) .text-\[\#222\]    { color: #555555 !important; }
+html:not(.light) .text-\[\#1a1a1a\] { color: #444444 !important; }
+html:not(.light) .text-\[\#111\]    { color: #3d3d3d !important; }
+
+/* =============================================
+   SCROLLBAR
+   ============================================= */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--c-bg); }
+::-webkit-scrollbar-thumb { background: var(--c-border); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* =============================================
+   GRAIN
+   ============================================= */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -200%;
+  width: 400%;
+  height: 400%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9998;
+  animation: grain-move 8s steps(10) infinite;
+}
+
+@keyframes grain-move {
+  0%, 100% { transform: translate(0, 0); }
+  10%  { transform: translate(-2%, -3%); }
+  20%  { transform: translate(1%, 2%); }
+  30%  { transform: translate(-3%, 1%); }
+  40%  { transform: translate(2%, -2%); }
+  50%  { transform: translate(-1%, 3%); }
+  60%  { transform: translate(3%, -1%); }
+  70%  { transform: translate(-2%, 2%); }
+  80%  { transform: translate(1%, -3%); }
+  90%  { transform: translate(-3%, 2%); }
+}
+
+/* =============================================
+   SELECTION
+   ============================================= */
+::selection { background: var(--accent); color: #080808; }
+
+/* =============================================
+   MARQUEE (Skills)
+   ============================================= */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+.marquee-track-left  { animation: marquee-left  30s linear infinite; }
+.marquee-track-right { animation: marquee-right 24s linear infinite; }
+
+.marquee-row:hover .marquee-track-left,
+.marquee-row:hover .marquee-track-right {
+  animation-play-state: paused;
+}
+
+/* =============================================
+   NAV UNDERLINE
+   ============================================= */
+.nav-link { position: relative; }
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after { width: 100%; }
+
+/* =============================================
+   PROFILE PHOTO (About section)
+   ============================================= */
+.hero-profile-wrapper {
+  width: 300px;
+  height: 300px;
+  border-radius: 9999px;
+  border: 4px solid #6366f1;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+  animation: hero-profile-pulse 3s ease-in-out infinite;
+}
+
+.hero-profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 9999px;
+  display: block;
+}
+
+@keyframes hero-profile-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+  }
+  50% {
+    transform: scale(1.05);
+    box-shadow: 0 25px 70px rgba(236, 72, 153, 0.4);
+  }
+}
+
+/* =============================================
+   NAV HAMBURGER LINES (dark vs light)
+   ============================================= */
+.menu-line {
+  background-color: #ffffff;
+}
+
+html.light .menu-line {
+  background-color: #111111;
+}
