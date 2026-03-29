@@ -247,13 +247,19 @@ export default function Skills() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            
+            <p
+              className="text-[#555] text-sm max-w-xs font-mono"
+              style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
+            >
+              Hover any skill to see
+              <br className="hidden md:block" /> proficiency level.
+            </p>
           </ScrollReveal>
         </div>
       </div>
 
       {/* ── Marquee Rows ── */}
-      <div className="space-y-3 mb-6">      git status
+      <div className="space-y-3 mb-6">
         {/* Row 1 — Proficient, scrolls left */}
         <ScrollReveal delay={0.08}>
           <div>
