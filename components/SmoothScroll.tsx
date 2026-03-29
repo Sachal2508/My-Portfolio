@@ -23,7 +23,7 @@ export default function SmoothScroll({
 
   lenis.on("scroll", ScrollTrigger.update);
 
-  const raf = (time) => {
+  const raf = (time: number) => {
     lenis.raf(time * 1000);
   };
 
