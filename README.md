@@ -4,6 +4,10 @@ A high-end, interactive developer portfolio built with **Next.js 14**, **Framer 
 
 ---
 
+## Visit via Link https://my-portfolio-9yif.vercel.app/
+
+---
+
 ## ✨ Features
 
 - **Custom Lagging Cursor** — 22 trailing dots that follow your cursor with fluid easing (lerp)
@@ -100,7 +104,7 @@ public/
 npm run dev
 ```
 
-Open [https://my-portfolio-9yif.vercel.app/] in your browser.
+Open [http://localhost:3000/] in your browser.
 
 ---
 
