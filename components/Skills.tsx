@@ -205,7 +205,6 @@ function ToolChip({ tool, index }: { tool: { name: string; icon: string }; index
       viewport={{ once: true, margin: "0px 0px -20px 0px" }}
       transition={{ delay: index * 0.04, duration: 0.35 }}
       className="flex items-center gap-2 px-4 py-2.5 border border-[#1e1e1e] bg-[#0a0a0a] hover:border-[#0BE7FF] transition-colors"
-      style={{ cursor: "none" }}
     >
       <span className="text-base leading-none">{tool.icon}</span>
       <span

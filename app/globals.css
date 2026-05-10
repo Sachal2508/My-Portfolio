@@ -11,6 +11,7 @@
   --font-syne: "Syne", sans-serif;
   --font-dm: "DM Sans", sans-serif;
   --font-mono: "DM Mono", monospace;
+  --nav-height: 84px;
   --accent: #0be7ff;
   --accent-warm: #ff3a5c;
   --c-bg:       #080808;
@@ -44,9 +45,13 @@ html.light {
 /* =============================================
    BASE
    ============================================= */
-*, *::before, *::after {
+*, *::before, *::after { box-sizing: border-box; }
+
+html.cursor-hidden,
+html.cursor-hidden *,
+html.cursor-hidden *::before,
+html.cursor-hidden *::after {
   cursor: none !important;
-  box-sizing: border-box;
 }
 
 html { scroll-behavior: auto; }
@@ -59,6 +64,9 @@ body {
   line-height: 1.6;
   transition: background-color 0.4s ease, color 0.4s ease;
 }
+
+main { padding-top: var(--nav-height); }
+section[id] { scroll-margin-top: calc(var(--nav-height) + 16px); }
 
 /* =============================================
    LIGHT MODE — TAILWIND CLASS OVERRIDES

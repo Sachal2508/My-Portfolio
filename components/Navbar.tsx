@@ -71,7 +71,11 @@ export default function Navbar() {
           </MagneticElement>
 
           {/* Desktop nav links */}
-          <ul className="hidden md:flex items-center gap-10">
+          <ul
+            className={`hidden md:flex items-center gap-10 transition-opacity duration-200 ${
+              menuOpen ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}
+          >
             {links.map((link) => (
               <li key={link.href}>
                 <MagneticElement strength={0.2}>

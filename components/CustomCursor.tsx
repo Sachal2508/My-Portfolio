@@ -17,11 +17,24 @@ export default function CustomCursor() {
   );
   const hovering = useRef(false);
   const rafRef = useRef<number>();
+  const visibleRef = useRef(false);
+  const [enabled, setEnabled] = useState(false);
   const [visible, setVisible] = useState(false);
   const [isLight, setIsLight] = useState(false);
 
+  useEffect(() => {
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const finePointer = window.matchMedia("(pointer: fine)").matches;
+    if (!finePointer || reduceMotion) return;
+
+    setEnabled(true);
+    document.documentElement.classList.add("cursor-hidden");
+    return () => document.documentElement.classList.remove("cursor-hidden");
+  }, []);
+
   // Detect theme changes
   useEffect(() => {
+    if (!enabled) return;
     const check = () =>
       setIsLight(document.documentElement.classList.contains("light"));
     check();
@@ -32,26 +45,11 @@ export default function CustomCursor() {
       attributeFilter: ["class"],
     });
     return () => observer.disconnect();
-  }, []);
+  }, [enabled]);
 
   useEffect(() => {
-    const onMove = (e: MouseEvent) => {
-      mouseRef.current = { x: e.clientX, y: e.clientY };
-      if (!visible) setVisible(true);
-    };
-
-    const onOver = (e: MouseEvent) => {
-      const t = e.target as Element;
-      if (t.closest("a, button, [data-magnetic], label, input, textarea, select")) {
-        hovering.current = true;
-      }
-    };
-
-    const onOut = () => { hovering.current = false; };
-
-    window.addEventListener("mousemove", onMove);
-    document.addEventListener("mouseover", onOver);
-    document.addEventListener("mouseout", onOut);
+    if (!enabled) return;
+    let started = false;
 
     const tick = () => {
       const ease = hovering.current ? HOVER_EASING : EASING;
@@ -87,16 +85,40 @@ export default function CustomCursor() {
       rafRef.current = requestAnimationFrame(tick);
     };
 
-    rafRef.current = requestAnimationFrame(tick);
+    const start = () => {
+      if (started) return;
+      started = true;
+      rafRef.current = requestAnimationFrame(tick);
+    };
 
+    const onMove = (e: MouseEvent) => {
+      mouseRef.current = { x: e.clientX, y: e.clientY };
+      if (!visibleRef.current) {
+        visibleRef.current = true;
+        setVisible(true);
+      }
+      start();
+    };
+
+    const onOver = (e: MouseEvent) => {
+      const t = e.target as Element;
+      if (t.closest("a, button, [data-magnetic], label, input, textarea, select")) {
+        hovering.current = true;
+      }
+    };
+
+    const onOut = () => { hovering.current = false; };
+
+    window.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("mouseover", onOver);
+    document.addEventListener("mouseout", onOut);
     return () => {
       window.removeEventListener("mousemove", onMove);
       document.removeEventListener("mouseover", onOver);
       document.removeEventListener("mouseout", onOut);
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [enabled]);
 
   // Dot color: cyan in dark, dark ink in light
   const trailColor = isLight ? "#1a1a1a" : "#ffffff";
@@ -104,6 +126,8 @@ export default function CustomCursor() {
   const cursorGlow = isLight
     ? "0 0 6px rgba(0,153,187,0.5)"
     : "0 0 8px rgba(11,231,255,0.8), 0 0 18px rgba(11,231,255,0.3)";
+
+  if (!enabled) return null;
 
   return (
     <div
