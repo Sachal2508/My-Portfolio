@@ -145,29 +145,27 @@ export default function Navbar() {
             {/* Decorative accent line */}
             <div className="absolute top-1/2 left-0 right-0 h-px bg-[#1c1c1c] -translate-y-1/2 pointer-events-none" />
 
-            <MagneticElement>
-              <button
-                onClick={() => setMenuOpen(false)}
-                className="absolute top-6 right-6 w-10 h-10 flex flex-col items-center justify-center gap-[6px] group"
-                aria-label="Close menu"
-              >
-                <span
-                  className={`menu-line block h-px w-6 transition-all duration-300 ${
-                    menuOpen ? "rotate-45 translate-y-[7px]" : ""
-                  }`}
-                />
-                <span
-                  className={`menu-line block h-px transition-all duration-300 ${
-                    menuOpen ? "opacity-0 w-0" : "w-4"
-                  }`}
-                />
-                <span
-                  className={`menu-line block h-px w-6 transition-all duration-300 ${
-                    menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
-                  }`}
-                />
-              </button>
-            </MagneticElement>
+            <button
+              onClick={() => setMenuOpen(false)}
+              className="absolute top-6 right-6 z-20 w-12 h-12 flex flex-col items-center justify-center gap-[6px] rounded-full border border-[#1c1c1c] hover:border-[#0BE7FF] transition-colors"
+              aria-label="Close menu"
+            >
+              <span
+                className={`menu-line block h-px w-6 transition-all duration-300 ${
+                  menuOpen ? "rotate-45 translate-y-[7px]" : ""
+                }`}
+              />
+              <span
+                className={`menu-line block h-px transition-all duration-300 ${
+                  menuOpen ? "opacity-0 w-0" : "w-4"
+                }`}
+              />
+              <span
+                className={`menu-line block h-px w-6 transition-all duration-300 ${
+                  menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+                }`}
+              />
+            </button>
 
             <nav className="relative z-10">
               <ul className="flex flex-col items-center gap-2">
