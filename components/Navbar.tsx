@@ -148,10 +148,24 @@ export default function Navbar() {
             <MagneticElement>
               <button
                 onClick={() => setMenuOpen(false)}
-                className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center border border-[#1c1c1c] text-xs text-[#888] hover:text-white hover:border-[#0BE7FF] transition-colors hover-lift"
+                className="absolute top-6 right-6 w-10 h-10 flex flex-col items-center justify-center gap-[6px] group"
                 aria-label="Close menu"
               >
-                X
+                <span
+                  className={`menu-line block h-px w-6 transition-all duration-300 ${
+                    menuOpen ? "rotate-45 translate-y-[7px]" : ""
+                  }`}
+                />
+                <span
+                  className={`menu-line block h-px transition-all duration-300 ${
+                    menuOpen ? "opacity-0 w-0" : "w-4"
+                  }`}
+                />
+                <span
+                  className={`menu-line block h-px w-6 transition-all duration-300 ${
+                    menuOpen ? "-rotate-45 -translate-y-[7px]" : ""
+                  }`}
+                />
               </button>
             </MagneticElement>
 
