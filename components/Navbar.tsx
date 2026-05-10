@@ -56,7 +56,7 @@ export default function Navbar() {
           scrolled
             ? "py-3 border-b border-[#1c1c1c] backdrop-blur-md bg-[#080808]/80"
             : "py-5"
-        }`}
+        } ${menuOpen ? "opacity-0 pointer-events-none" : "opacity-100"}`}
       >
         <div className="max-w-[1400px] mx-auto px-8 flex items-center justify-between">
           {/* Logo */}
@@ -81,7 +81,7 @@ export default function Navbar() {
                 <MagneticElement strength={0.2}>
                   <button
                     onClick={() => scrollTo(link.href)}
-                    className="nav-link font-dm text-sm tracking-widest uppercase text-[#888] hover:text-white transition-colors"
+                    className="nav-link hover-lift font-dm text-sm tracking-widest uppercase text-[#888] hover:text-white transition-colors"
                     style={{ fontFamily: "var(--font-dm, DM Sans, sans-serif)" }}
                   >
                     {link.label}
@@ -140,10 +140,20 @@ export default function Navbar() {
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.65, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-[999] bg-[#0a0a0a] flex flex-col items-center justify-center"
+            className="fixed inset-0 z-[1100] bg-[#0a0a0a] flex flex-col items-center justify-center"
           >
             {/* Decorative accent line */}
             <div className="absolute top-1/2 left-0 right-0 h-px bg-[#1c1c1c] -translate-y-1/2 pointer-events-none" />
+
+            <MagneticElement>
+              <button
+                onClick={() => setMenuOpen(false)}
+                className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center border border-[#1c1c1c] text-xs text-[#888] hover:text-white hover:border-[#0BE7FF] transition-colors hover-lift"
+                aria-label="Close menu"
+              >
+                X
+              </button>
+            </MagneticElement>
 
             <nav className="relative z-10">
               <ul className="flex flex-col items-center gap-2">
@@ -161,7 +171,7 @@ export default function Navbar() {
                   >
                     <button
                       onClick={() => scrollTo(link.href)}
-                      className="block text-[13vw] md:text-[9vw] font-syne font-bold leading-none tracking-tight text-white hover:text-[#0BE7FF] transition-colors duration-300 overflow-hidden"
+                      className="menu-link-text hover-lift block text-[13vw] md:text-[9vw] font-syne font-bold leading-none tracking-tight text-white hover:text-[#0BE7FF] transition-colors duration-300 overflow-hidden"
                       style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
                     >
                       {link.label}

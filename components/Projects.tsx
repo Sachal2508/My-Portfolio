@@ -177,7 +177,7 @@ function ProjectCard({
             href={project.links.github}
             target="_blank"
             rel="noreferrer"
-            className="text-xs text-[#555] hover:text-white transition-colors font-mono tracking-wider uppercase"
+            className="hover-lift text-xs text-[#555] hover:text-white transition-colors font-mono tracking-wider uppercase"
           >
             GitHub →
           </a>
@@ -187,7 +187,7 @@ function ProjectCard({
             href={project.links.live}
             target="_blank"
             rel="noreferrer"
-            className="text-xs text-[#0BE7FF] hover:text-white transition-colors font-mono tracking-wider uppercase"
+            className="hover-lift text-xs text-[#0BE7FF] hover:text-white transition-colors font-mono tracking-wider uppercase"
           >
             Live / Download →
           </a>
@@ -246,7 +246,7 @@ export default function Projects() {
           href="https://github.com/Sachal2508"
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-3 text-sm text-[#444] hover:text-white transition-colors font-mono border-b border-[#1c1c1c] pb-1 hover:border-white"
+          className="hover-lift inline-flex items-center gap-3 text-sm text-[#444] hover:text-white transition-colors font-mono border-b border-[#1c1c1c] pb-1 hover:border-white"
           style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
         >
           View all on GitHub ↗

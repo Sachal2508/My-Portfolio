@@ -65,7 +65,7 @@ export default function Contact() {
         <MagneticElement strength={0.12}>
           <a
             href="mailto:sachalkool@gmail.com"
-            className="group inline-flex items-center gap-4"
+            className="group inline-flex items-center gap-4 hover-lift"
           >
             <span
               className="font-syne font-bold text-[#222] group-hover:text-white transition-colors duration-500"
@@ -117,7 +117,7 @@ export default function Contact() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="font-syne font-semibold text-[#555] hover:text-white transition-colors text-base group-hover:text-[#0BE7FF]"
+                className="hover-lift font-syne font-semibold text-[#555] hover:text-white transition-colors text-base group-hover:text-[#0BE7FF]"
                 style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
               >
                 {social.handle} ↗
