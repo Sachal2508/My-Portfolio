@@ -41,10 +41,11 @@ export default function Navbar() {
             MS
           </button>
         }
-        useFixedPosition
+        useFixedPosition={false}
         menuAriaLabel="Toggle navigation"
         menuBg="rgba(12, 12, 12, 0.72)"
         menuContentColor="#f5f5f5"
+        fixedActions
         rightAccessory={
           <button
             type="button"

@@ -13,28 +13,30 @@ import ScrollToTop from "@/components/ScrollToTop";
 
 export default function Home() {
   return (
-    <SmoothScroll>
-      {/* Grain texture overlay */}
-      <div className="grain" />
-
-      {/* Custom trailing cursor */}
-      <CustomCursor />
-
+    <>
       {/* Navigation */}
       <Navbar />
 
-      {/* Main content */}
-      <main>
-        <Hero />
-        <About />
-        <Skills />
-        <Projects />
-        <Contact />
-      </main>
+      <SmoothScroll>
+        {/* Grain texture overlay */}
+        <div className="grain" />
 
-      <Footer />
+        {/* Custom trailing cursor */}
+        <CustomCursor />
 
-      <ScrollToTop />
-    </SmoothScroll>
+        {/* Main content */}
+        <main>
+          <Hero />
+          <About />
+          <Skills />
+          <Projects />
+          <Contact />
+        </main>
+
+        <Footer />
+
+        <ScrollToTop />
+      </SmoothScroll>
+    </>
   );
 }

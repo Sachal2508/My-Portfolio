@@ -26,6 +26,13 @@
   pointer-events: auto;
 }
 
+.actionsFixed {
+  position: fixed;
+  top: 1.25rem;
+  right: 2rem;
+  z-index: 1110;
+}
+
 .bubble,
 .brandBubble {
   --bubble-size: 52px;
@@ -179,6 +186,11 @@
   }
 
   .actions { gap: 0.5rem; }
+
+  .actionsFixed {
+    top: 1rem;
+    right: 1rem;
+  }
 
   .brandBubble {
     min-width: 6.4rem;

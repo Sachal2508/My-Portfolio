@@ -29,6 +29,7 @@ type BubbleMenuProps = {
   logo: ReactNode;
   items?: BubbleMenuItem[];
   rightAccessory?: ReactNode;
+  fixedActions?: boolean;
   className?: string;
   style?: CSSProperties;
   onMenuClick?: (open: boolean) => void;
@@ -46,6 +47,7 @@ export default function BubbleMenu({
   logo,
   items,
   rightAccessory,
+  fixedActions = false,
   className,
   style,
   onMenuClick,
@@ -71,6 +73,13 @@ export default function BubbleMenu({
     styles.root,
     useFixedPosition ? styles.fixed : styles.absolute,
     className,
+  ]
+    .filter(Boolean)
+    .join(" ");
+
+  const actionsClassName = [
+    styles.actions,
+    fixedActions ? styles.actionsFixed : "",
   ]
     .filter(Boolean)
     .join(" ");
@@ -143,7 +152,7 @@ export default function BubbleMenu({
             {logo}
           </div>
 
-          <div className={styles.actions}>
+          <div className={actionsClassName}>
             {rightAccessory}
 
             <button
