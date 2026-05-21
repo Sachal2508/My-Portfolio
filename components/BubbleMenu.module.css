@@ -1,0 +1,200 @@
+.root {
+  position: fixed;
+  top: 1.25rem;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  pointer-events: none;
+}
+
+.fixed { position: fixed; }
+.absolute { position: absolute; }
+
+.shell {
+  width: min(1400px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.875rem;
+}
+
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  pointer-events: auto;
+}
+
+.bubble,
+.brandBubble {
+  --bubble-size: 52px;
+  height: var(--bubble-size);
+  min-height: var(--bubble-size);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  pointer-events: auto;
+}
+
+.brandBubble {
+  padding: 0 1rem;
+  min-width: 7rem;
+  font-family: var(--font-syne, Syne, sans-serif);
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.toggleBubble {
+  width: var(--bubble-size);
+  padding: 0;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toggleBubble:focus-visible,
+.pill:focus-visible,
+.backdrop:focus-visible {
+  outline: 2px solid #0be7ff;
+  outline-offset: 3px;
+}
+
+.menuLine {
+  width: 1.15rem;
+  height: 2px;
+  border-radius: 999px;
+  display: block;
+  transform-origin: center;
+  transition: transform 220ms ease, opacity 220ms ease, width 220ms ease;
+}
+
+.shortLine { width: 0.8rem; }
+
+.open .menuLine:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.open .shortLine {
+  width: 1.15rem;
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* ─── Overlay ─────────────────────────────────────── */
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1090;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(4, 4, 6, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.panel {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem 2rem;
+  pointer-events: none;
+}
+
+/* ─── List ────────────────────────────────────────── */
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  pointer-events: auto;
+}
+
+.listItem {
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Giant text link ─────────────────────────────── */
+
+.pill {
+  --pill-color: #f5f5f5;
+  --hover-color: #f5f5f5;
+  --accent: #f5f5f5;
+
+  display: block;
+  font-family: var(--font-syne, Syne, sans-serif);
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.18);
+  line-height: 1.1;
+  padding: 0.15em 0.4em;
+  transition: color 200ms ease, transform 200ms ease;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.pill:hover {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+
+.pill:active {
+  transform: translateX(4px) scale(0.98);
+}
+
+.pillLabel {
+  display: block;
+  will-change: transform, opacity;
+}
+
+/* ─── Responsive ──────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .shell {
+    width: calc(100% - 1rem);
+  }
+
+  .actions { gap: 0.5rem; }
+
+  .brandBubble {
+    min-width: 6.4rem;
+    padding: 0 0.9rem;
+  }
+
+  .panel {
+    padding-top: 5rem;
+    padding-left: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .list { align-items: flex-start; }
+
+  .pill {
+    font-size: clamp(2.2rem, 11vw, 3rem);
+    padding: 0.12em 0;
+  }
+}
