@@ -5,7 +5,23 @@ import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 
-const projects = [
+type Project = {
+  id: string;
+  title: string;
+  description: string;
+  tags: string[];
+  links: {
+    github?: string;
+    live?: string;
+    ctaLabel?: string;
+  };
+  emoji?: string;
+  logo?: string;
+  logoAlt?: string;
+  featured: boolean;
+};
+
+const projects: Project[] = [
   {
     id: "09",
     title: "StudyTrove Website",
@@ -124,7 +140,7 @@ function ProjectCard({
   project,
   index,
 }: {
-  project: (typeof projects)[0];
+  project: Project;
   index: number;
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
