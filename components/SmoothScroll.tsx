@@ -15,13 +15,14 @@ export default function SmoothScroll({
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const coarsePointer = window.matchMedia("(pointer: coarse)").matches;
-    if (reduceMotion || coarsePointer) return;
+    const touchDevice = navigator.maxTouchPoints > 0;
+    if (reduceMotion || coarsePointer || touchDevice) return;
 
     const lenis = new Lenis({
-      duration: 1.0,
+      duration: 0.85,
       easing: (t) => 1 - Math.pow(1 - t, 4),
       smoothWheel: true,
-      wheelMultiplier: 1,
+      wheelMultiplier: 0.95,
       touchMultiplier: 1.5,
     });
 
@@ -32,7 +33,7 @@ export default function SmoothScroll({
     };
 
     gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(0);
+    gsap.ticker.lagSmoothing(500, 33);
 
     const refresh = () => ScrollTrigger.refresh();
     if ("fonts" in document) {

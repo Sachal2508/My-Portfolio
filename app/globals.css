@@ -238,6 +238,29 @@ html:not(.light) .text-\[\#111\]    { color: #3d3d3d !important; }
   transform: translateY(-1px) scale(0.99);
 }
 
+@media (hover: none) and (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .hover-lift,
+  .hover-lift:hover,
+  .hover-lift:active {
+    transform: none;
+    transition: none;
+  }
+
+  .grain::after {
+    animation: none;
+    opacity: 0.015;
+  }
+
+  .hero-profile-wrapper {
+    animation: none;
+  }
+
+  .marquee-track-left,
+  .marquee-track-right {
+    animation: none;
+  }
+}
+
 /* =============================================
    PROFILE PHOTO (About section)
    ============================================= */

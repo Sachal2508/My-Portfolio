@@ -1,10 +1,40 @@
 "use client";
 
-import { useRef, useState } from "react";
+import Image from "next/image";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import ScrollReveal from "./ScrollReveal";
 
 const projects = [
+  {
+    id: "09",
+    title: "StudyTrove Website",
+    description:
+      "A focused website for StudyTrove with a clean landing experience and quick access to the live product.",
+    tags: ["Next.js", "Tailwind CSS", "Vercel"],
+    links: {
+      live: "https://studytrove.vercel.app/",
+      ctaLabel: "Visit Website →",
+    },
+    logo: "/images/ST%20logo.png",
+    logoAlt: "StudyTrove logo",
+    featured: true,
+  },
+  {
+    id: "10",
+    title: "FlexPro App",
+    description:
+      "A companion app for FlexPro with its branded logo, download access, and the source repository for the app.",
+    tags: ["Mobile App", "React Native", "Firebase"],
+    links: {
+      live: "https://studytrove.vercel.app/",
+      ctaLabel: "Download →",
+      github: "https://github.com/Sachal2508/FlexPro-App",
+    },
+    logo: "/images/FP%20logo.jpg",
+    logoAlt: "FlexPro logo",
+    featured: true,
+  },
   {
     id: "01",
     title: "Al-Qur'an Android App",
@@ -99,54 +129,52 @@ function ProjectCard({
 }) {
   const cardRef = useRef<HTMLDivElement>(null);
   const inView = useInView(cardRef, { once: true, margin: "0px 0px -60px 0px" });
-  const [tilt, setTilt] = useState({ x: 0, y: 0 });
-  const [hovered, setHovered] = useState(false);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = ((e.clientY - rect.top) / rect.height - 0.5) * 10;
-    const y = -((e.clientX - rect.left) / rect.width - 0.5) * 10;
-    setTilt({ x, y });
-  };
 
   return (
     <motion.div
       ref={cardRef}
       initial={{ opacity: 0, y: 50 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
+      whileHover={{ y: -6 }}
       transition={{
-        duration: 0.7,
-        delay: (index % 3) * 0.1 + 0.05,
+        duration: 0.5,
+        delay: (index % 3) * 0.06 + 0.03,
         ease: [0.22, 1, 0.36, 1],
       }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => {
-        setTilt({ x: 0, y: 0 });
-        setHovered(false);
-      }}
-      style={{
-        transform: `perspective(800px) rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
-        transition: hovered ? "transform 0.1s linear" : "transform 0.5s ease",
-      }}
-      className={`relative group border border-[#1c1c1c] bg-[#0a0a0a] p-8 hover:border-[#333] transition-colors ${
+      className={`relative group border border-[#1c1c1c] bg-[#0a0a0a] p-8 hover:border-[#333] transition-colors will-change-transform ${
         project.featured ? "md:col-span-1" : ""
       }`}
     >
-      {/* Project number */}
-      <span
-        className="font-mono text-[10px] text-[#222] tracking-widest"
-        style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
-      >
-        {project.id}
-      </span>
+      <div className="flex items-start justify-between gap-4">
+        {/* Project number */}
+        <span
+          className="font-mono text-[10px] text-[#222] tracking-widest"
+          style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
+        >
+          {project.id}
+        </span>
 
-      {/* Emoji */}
-      <div className="text-4xl mt-4 mb-5 select-none">{project.emoji}</div>
+        {/* Logo or emoji */}
+        <div className="h-14 w-14 shrink-0 overflow-hidden rounded-2xl border border-[#1c1c1c] bg-[#101010] p-2">
+          {project.logo ? (
+            <Image
+              src={project.logo}
+              alt={project.logoAlt ?? project.title}
+              width={48}
+              height={48}
+              className="h-full w-full object-contain"
+            />
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-3xl select-none">
+              {project.emoji}
+            </div>
+          )}
+        </div>
+      </div>
 
       {/* Title */}
       <h3
-        className="font-syne font-bold text-xl text-white mb-3 group-hover:text-[#0BE7FF] transition-colors leading-tight"
+        className="font-syne font-bold text-xl text-white mt-5 mb-3 group-hover:text-[#0BE7FF] transition-colors leading-tight"
         style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
       >
         {project.title}
@@ -189,7 +217,7 @@ function ProjectCard({
             rel="noreferrer"
             className="hover-lift text-xs text-[#0BE7FF] hover:text-white transition-colors font-mono tracking-wider uppercase"
           >
-            Live / Download →
+            {project.links.ctaLabel ?? "Live / Download →"}
           </a>
         )}
       </div>

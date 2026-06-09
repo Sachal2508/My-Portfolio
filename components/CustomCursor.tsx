@@ -2,9 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 
-const TRAIL_COUNT = 22;
-const EASING = 0.16;
-const HOVER_EASING = 0.36;
+const TRAIL_COUNT = 12;
+const EASING = 0.12;
+const HOVER_EASING = 0.24;
 
 type Dot = { x: number; y: number };
 
@@ -24,8 +24,9 @@ export default function CustomCursor() {
 
   useEffect(() => {
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const finePointer = window.matchMedia("(pointer: fine)").matches;
-    if (!finePointer || reduceMotion) return;
+    const fineHoverPointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const touchDevice = navigator.maxTouchPoints > 0 || window.matchMedia("(pointer: coarse)").matches;
+    if (!fineHoverPointer || reduceMotion || touchDevice) return;
 
     setEnabled(true);
     document.documentElement.classList.add("cursor-hidden");
@@ -57,7 +58,7 @@ export default function CustomCursor() {
 
       // Main cursor — instant
       if (cursorRef.current) {
-        cursorRef.current.style.transform = `translate(${mouse.x}px, ${mouse.y}px) translate(-50%,-50%) scale(${hovering.current ? 2.4 : 1})`;
+        cursorRef.current.style.transform = `translate3d(${mouse.x}px, ${mouse.y}px, 0) translate(-50%,-50%) scale(${hovering.current ? 2.2 : 1})`;
       }
 
       // Trail chain — each dot lerps toward the previous
@@ -76,7 +77,7 @@ export default function CustomCursor() {
         const pos = trailPositions.current[i];
         const progress = 1 - i / TRAIL_COUNT;
         const size = Math.max(1.5, 9 * progress);
-        dot.style.transform = `translate(${pos.x}px, ${pos.y}px) translate(-50%,-50%)`;
+        dot.style.transform = `translate3d(${pos.x}px, ${pos.y}px, 0) translate(-50%,-50%)`;
         dot.style.width = `${size}px`;
         dot.style.height = `${size}px`;
         dot.style.opacity = `${Math.max(0, progress * 0.8)}`;
@@ -144,7 +145,7 @@ export default function CustomCursor() {
           height: "10px",
           backgroundColor: cursorColor,
           willChange: "transform",
-          transition: "transform 0.05s linear, background-color 0.3s ease",
+          transition: "transform 0.04s linear, background-color 0.3s ease",
           mixBlendMode: isLight ? "multiply" : "difference",
           boxShadow: cursorGlow,
         }}

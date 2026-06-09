@@ -15,8 +15,8 @@ interface ScrollRevealProps {
 export default function ScrollReveal({
   children,
   delay = 0,
-  duration = 0.75,
-  y = 40,
+  duration = 0.55,
+  y = 24,
   className = "",
   once = true,
 }: ScrollRevealProps) {
