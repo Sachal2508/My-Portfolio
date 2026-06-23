@@ -200,7 +200,9 @@ html:not(.light) .text-\[\#111\]    { color: #3d3d3d !important; }
 .marquee-track-right { animation: marquee-right 24s linear infinite; }
 
 .marquee-row:hover .marquee-track-left,
-.marquee-row:hover .marquee-track-right {
+.marquee-row:hover .marquee-track-right,
+.marquee-row:active .marquee-track-left,
+.marquee-row:active .marquee-track-right {
   animation-play-state: paused;
 }
 
@@ -238,7 +240,25 @@ html:not(.light) .text-\[\#111\]    { color: #3d3d3d !important; }
   transform: translateY(-1px) scale(0.99);
 }
 
-@media (hover: none) and (pointer: coarse), (prefers-reduced-motion: reduce) {
+@media (hover: none) and (pointer: coarse) {
+  .hover-lift,
+  .hover-lift:hover,
+  .hover-lift:active {
+    transform: none;
+    transition: none;
+  }
+
+  .grain::after {
+    animation: none;
+    opacity: 0.015;
+  }
+
+  .hero-profile-wrapper {
+    animation: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
   .hover-lift,
   .hover-lift:hover,
   .hover-lift:active {
