@@ -61,8 +61,9 @@ const projects: Project[] = [
       github: "https://github.com/Sachal2508/AL-Quran",
       live: "https://drive.google.com/uc?export=download&id=1g9JoQBjF4X4KwmW6rkTVT2o1JRBPIJ6B",
     },
-    emoji: "📖",
-    featured: true,
+    logo: "/images/ALQuran.png",
+    logoAlt: "Al Quran logo",
+    featured: true
   },
   {
     id: "02",
