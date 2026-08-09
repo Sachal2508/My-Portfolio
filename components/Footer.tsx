@@ -1,35 +1,149 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const [timeStr, setTimeStr] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      // Pakistan Standard Time (UTC+5)
+      const options: Intl.DateTimeFormatOptions = {
+        timeZone: "Asia/Karachi",
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+        hour12: true,
+      };
+      setTimeStr(new Intl.DateTimeFormat("en-US", options).format(now));
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const scrollTo = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <footer className="border-t border-[#1c1c1c] py-10 px-8 md:px-16 max-w-[1400px] mx-auto">
-      <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-[#333] text-xs font-mono tracking-widest"
-          style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
-        >
-          © {year} MUHAMMAD SACHAL — ALL RIGHTS RESERVED
-        </motion.p>
+    <footer className="border-t border-[#1e1e1e] bg-[#060606] pt-20 pb-12 px-8 md:px-16 text-white relative overflow-hidden">
+      <div className="max-w-[1400px] mx-auto flex flex-col gap-y-16">
 
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          className="flex items-center gap-2 text-[10px] text-[#222] font-mono tracking-widest"
-          style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
-        >
-          <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#0BE7FF] animate-pulse" />
-          AVAILABLE FOR WORK
-        </motion.div>
+        {/* Top Footer Section: Giant Branding + Quick Links */}
+        <div className="grid grid-cols-12 gap-y-12 gap-x-8 items-start">
+          
+          {/* Brand Column */}
+          <div className="col-span-12 lg:col-span-6 flex flex-col gap-y-4">
+            <h2
+              className="font-syne font-extrabold text-4xl sm:text-6xl tracking-tight text-white uppercase"
+              style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
+            >
+              MUHAMMAD <span className="text-[#0BE7FF]">SACHAL</span>
+            </h2>
+            <p className="text-sm text-[#888] max-w-md leading-relaxed font-sans">
+              Full-Stack Developer & AI/ML Engineer based in Lahore, Pakistan. Crafting scalable applications and modern digital experiences.
+            </p>
+
+            {/* Pakistan Local Time Stamp */}
+            <div className="mt-4 flex items-center gap-3 text-xs font-mono text-[#aaa] border border-[#222] bg-[#0d0d0d] px-4 py-2 rounded-lg w-fit">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0BE7FF] opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0BE7FF]" />
+              </span>
+              <span>Lahore, PK (PST): <span className="text-[#0BE7FF] font-semibold">{timeStr || "UTC+5"}</span></span>
+            </div>
+          </div>
+
+          {/* Quick Navigation Links */}
+          <div className="col-span-6 lg:col-span-3 flex flex-col gap-y-3 font-mono text-xs text-[#aaa]">
+            <span className="text-white font-bold uppercase tracking-widest mb-2 font-syne text-sm">
+              Navigation
+            </span>
+            <button
+              onClick={() => scrollTo("#home")}
+              className="text-left hover:text-[#0BE7FF] transition-colors py-1 w-fit"
+            >
+              00 // HOME
+            </button>
+            <button
+              onClick={() => scrollTo("#about")}
+              className="text-left hover:text-[#0BE7FF] transition-colors py-1 w-fit"
+            >
+              01 // ABOUT
+            </button>
+            <button
+              onClick={() => scrollTo("#skills")}
+              className="text-left hover:text-[#0BE7FF] transition-colors py-1 w-fit"
+            >
+              02 // SKILLS
+            </button>
+            <button
+              onClick={() => scrollTo("#projects")}
+              className="text-left hover:text-[#0BE7FF] transition-colors py-1 w-fit"
+            >
+              03 // PROJECTS
+            </button>
+            <button
+              onClick={() => scrollTo("#contact")}
+              className="text-left hover:text-[#0BE7FF] transition-colors py-1 w-fit"
+            >
+              04 // CONTACT
+            </button>
+          </div>
+
+          {/* Socials Column */}
+          <div className="col-span-6 lg:col-span-3 flex flex-col gap-y-3 font-mono text-xs text-[#aaa]">
+            <span className="text-white font-bold uppercase tracking-widest mb-2 font-syne text-sm">
+              Social Connection
+            </span>
+            <a
+              href="https://github.com/Sachal2508"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#0BE7FF] transition-colors py-1 w-fit flex items-center gap-1"
+            >
+              GitHub ↗
+            </a>
+            <a
+              href="https://www.linkedin.com/in/muhammad-sachal-9a929136a/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#0BE7FF] transition-colors py-1 w-fit flex items-center gap-1"
+            >
+              LinkedIn ↗
+            </a>
+            <a
+              href="https://www.instagram.com/muhammad.sachal.773/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-[#0BE7FF] transition-colors py-1 w-fit flex items-center gap-1"
+            >
+              Instagram ↗
+            </a>
+            <a
+              href="mailto:sachalm58@gmail.com"
+              className="hover:text-[#0BE7FF] transition-colors py-1 w-fit flex items-center gap-1"
+            >
+              Email ↗
+            </a>
+          </div>
+        </div>
+
+        {/* Big Decorative Bottom Watermark */}
+        <div className="pt-8 border-t border-[#181818] flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-[#666]">
+          <p>© {year} MUHAMMAD SACHAL. ALL RIGHTS RESERVED.</p>
+
+          <div className="flex items-center gap-2">
+            <span>BUILT WITH NEXT.JS & TAILWIND CSS</span>
+            <span className="text-[#0BE7FF]">●</span>
+          </div>
+        </div>
+
       </div>
     </footer>
   );

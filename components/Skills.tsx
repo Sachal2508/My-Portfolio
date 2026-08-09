@@ -1,320 +1,226 @@
 "use client";
 
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useRef } from "react";
 import ScrollReveal from "./ScrollReveal";
 
-/* ── Data ─────────────────────────────────────── */
-const proSkills = [
-  { name: "C / C++",      level: 90, icon: "⚡", tag: "Systems"     },
-  { name: "Python",       level: 85, icon: "🐍", tag: "Scripting"   },
-  { name: "T-SQL",        level: 90, icon: "🗄️",  tag: "Database"    },
-  { name: "Assembly x86", level: 88, icon: "🔩", tag: "Low-level"   },
-  { name: "ASP.NET Core", level: 80, icon: "⚙️",  tag: "Backend"     },
-  { name: "HTML5",        level: 82, icon: "🌐", tag: "Frontend"    },
-  { name: "CSS3",         level: 75, icon: "🎨", tag: "Frontend"    },
-  { name: "Bootstrap",    level: 78, icon: "📦", tag: "UI"          },
-  { name: "C#",           level: 80, icon: "💎", tag: "OOP"         },
-  { name: "PostgreSQL",   level: 72, icon: "🐘", tag: "Database"    },
-];
+const EASE = "cubic-bezier(.51,.92,.24,1.15)";
 
-const learningSkills = [
-  { name: "JavaScript",  level: 32, icon: "✨", tag: "In Progress"  },
-  { name: "React.js",    level: 45, icon: "⚛️",  tag: "In Progress"  },
-  { name: "Julia",       level: 30, icon: "📊", tag: "In Progress"  },
-  { name: "Next.js",     level: 35, icon: "🔺", tag: "In Progress"  },
-  { name: "AI / ML",     level: 28, icon: "🤖", tag: "In Progress"  },
-  { name: "TypeScript",  level: 30, icon: "📘", tag: "In Progress"  },
-  { name: "Framer Motion",level:25, icon: "🎞️",  tag: "In Progress"  },
-  { name: "GSAP",        level: 22, icon: "💫", tag: "In Progress"  },
-];
-
-const tools = [
-  { name: "Git",          icon: "🌿" },
-  { name: "GitHub",       icon: "🐙" },
-  { name: "VS Code",      icon: "💙" },
-  { name: "Jupyter",      icon: "📓" },
-  { name: "Pygame",       icon: "🎮" },
-  { name: "Capacitor",    icon: "📱" },
-  { name: "CMake",        icon: "🔨" },
-  { name: "SSMS",         icon: "🗃️"  },
-  { name: "Koyeb",        icon: "☁️"  },
-  { name: "Vercel",       icon: "▲"  },
-];
-
-/* ── Single Skill Pill ────────────────────────── */
-type Skill = { name: string; level?: number; icon: string; tag: string };
-
-function SkillPill({ skill, accent }: { skill: Skill; accent: boolean }) {
-  const [hovered, setHovered] = useState(false);
-
-  return (
-    <div
-      className="relative inline-flex items-center select-none"
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
-    >
-      {/* The pill */}
-      <motion.div
-        animate={
-          hovered
-            ? { scale: 1.08, y: -6 }
-            : { scale: 1, y: 0 }
-        }
-        transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
-        className={`
-          flex items-center gap-2.5 px-5 py-3 mx-2
-          border transition-colors duration-200
-          ${hovered
-            ? accent
-              ? "border-[#0BE7FF] bg-[#0BE7FF]/10"
-              : "border-[#FF3A5C] bg-[#FF3A5C]/10"
-            : "border-[#1e1e1e] bg-[#0a0a0a]"
-          }
-        `}
-        style={{
-          whiteSpace: "nowrap",
-          willChange: "transform",
-        }}
-      >
-        <span className="text-base leading-none">{skill.icon}</span>
-        <span
-          className={`font-syne font-semibold text-sm tracking-wide transition-colors ${
-            hovered
-              ? accent
-                ? "text-[#0BE7FF]"
-                : "text-[#FF3A5C]"
-              : "text-[#e8e8e8]"
-          }`}
-          style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
-        >
-          {skill.name}
-        </span>
-        <span
-          className="text-[10px] font-mono text-[#444] tracking-widest hidden md:inline"
-          style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
-        >
-          {skill.tag}
-        </span>
-      </motion.div>
-
-      {/* Tooltip that pops above on hover */}
-      <AnimatePresence>
-        {hovered && skill.level !== undefined && (
-          <motion.div
-            initial={{ opacity: 0, y: 6, scale: 0.92 }}
-            animate={{ opacity: 1, y: -4, scale: 1 }}
-            exit={{ opacity: 0, y: 4, scale: 0.9 }}
-            transition={{ duration: 0.18, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute bottom-full mb-3 left-1/2 -translate-x-1/2 z-50 pointer-events-none"
-            style={{ minWidth: "140px" }}
-          >
-            <div
-              className="border border-[#1e1e1e] bg-[#0f0f0f] px-4 py-3 shadow-xl"
-              style={{
-                boxShadow: accent
-                  ? "0 8px 24px rgba(11,231,255,0.15)"
-                  : "0 8px 24px rgba(255,58,92,0.15)",
-              }}
-            >
-              {/* Skill name */}
-              <p
-                className="font-syne font-bold text-[#e8e8e8] text-xs mb-2"
-                style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
-              >
-                {skill.name}
-              </p>
-              {/* Level bar */}
-              <div className="w-full h-[3px] bg-[#111] mb-1.5">
-                <motion.div
-                  initial={{ width: 0 }}
-                  animate={{ width: `${skill.level}%` }}
-                  transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                  className="h-full"
-                  style={{
-                    background: accent ? "#0BE7FF" : "#FF3A5C",
-                    boxShadow: accent
-                      ? "0 0 6px rgba(11,231,255,0.6)"
-                      : "0 0 6px rgba(255,58,92,0.6)",
-                  }}
-                />
-              </div>
-              {/* Percentage */}
-              <p
-                className="font-mono text-[10px] tracking-widest"
-                style={{
-                  fontFamily: "var(--font-mono, DM Mono, monospace)",
-                  color: accent ? "#0BE7FF" : "#FF3A5C",
-                }}
-              >
-                {skill.level}%
-              </p>
-            </div>
-            {/* Arrow tip */}
-            <div
-              className="absolute bottom-[-5px] left-1/2 -translate-x-1/2 w-[10px] h-[10px] rotate-45 bg-[#0f0f0f] border-r border-b"
-              style={{ borderColor: "#1e1e1e" }}
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
+interface SkillDomain {
+  id: string;
+  number: string;
+  title: string;
+  description: string;
+  skills: { num: string; name: string; details: string }[];
+  stickyTop: string;
+  marginBottom: string;
 }
 
-/* ── Marquee Row ──────────────────────────────── */
-function MarqueeRow({
-  skills,
-  direction,
-  accent,
-}: {
-  skills: Skill[];
-  direction: "left" | "right";
-  accent: boolean;
-}) {
-  // Duplicate for seamless loop
-  const doubled = [...skills, ...skills];
+const skillDomains: SkillDomain[] = [
+  {
+    id: "01",
+    number: "(01)",
+    title: "Programming Languages",
+    description: "Core languages for low-level systems, enterprise applications, web development, and data science.",
+    skills: [
+      { num: "01", name: "C / C++", details: "Memory management, Data Structures, OOP" },
+      { num: "02", name: "C#", details: ".NET Core, Enterprise Apps, Object-Oriented Design" },
+      { num: "03", name: "Python", details: "Scripting, Automation, AI/ML, Data Processing" },
+      { num: "04", name: "JavaScript & TypeScript", details: "ES6+, Async/Await, Strict Typing, Web & Native" },
+      { num: "05", name: "SQL, HTML5 & CSS3", details: "Relational Queries, Semantic Web, Modern Styling" },
+    ],
+    stickyTop: "12vh",
+    marginBottom: "28rem",
+  },
+  {
+    id: "02",
+    number: "(02)",
+    title: "Frontend Development",
+    description: "Building responsive, high-performance, and interactive web and mobile interfaces.",
+    skills: [
+      { num: "01", name: "React.js & Next.js", details: "App Router, SSR, Custom Hooks, State Management" },
+      { num: "02", name: "Responsive Web Design", details: "Mobile-First, Flexible Grid Systems, CSS Utilities" },
+      { num: "03", name: "Capacitor", details: "Cross-Platform Native Apps, Mobile Plugins, Offline Mode" },
+      { num: "04", name: "Modern Web APIs", details: "DOM Manipulation, Canvas, Web Storage, Fetch API" },
+    ],
+    stickyTop: "calc(12vh + 5.5rem)",
+    marginBottom: "24rem",
+  },
+  {
+    id: "03",
+    number: "(03)",
+    title: "Backend Development",
+    description: "Architecting scalable APIs, microservices, secure authentication, and cloud backends.",
+    skills: [
+      { num: "01", name: "ASP.NET Core / .NET", details: "Enterprise Web APIs, MVC Architecture, C#" },
+      { num: "02", name: "Node.js & Express.js", details: "Asynchronous Microservices, REST APIs" },
+      { num: "03", name: "Flask & FastAPI", details: "High-Performance Python Web Services & AI Endpoints" },
+      { num: "04", name: "REST APIs & Serverless", details: "HTTP Endpoints, Edge Execution, JSON Data" },
+      { num: "05", name: "Auth & Security", details: "JWT, OAuth, Role-Based Access Control (RBAC)" },
+    ],
+    stickyTop: "calc(12vh + 11rem)",
+    marginBottom: "20rem",
+  },
+  {
+    id: "04",
+    number: "(04)",
+    title: "AI & Machine Learning",
+    description: "Deep learning models, computer vision, natural language processing, and AI automation.",
+    skills: [
+      { num: "01", name: "TensorFlow & PyTorch / Keras", details: "Neural Networks, CNNs, Deep Learning Models" },
+      { num: "02", name: "Scikit-learn & OpenCV", details: "Machine Learning, Image Processing, Object Detection" },
+      { num: "03", name: "NLP & Computer Vision", details: "Text Classification, Feature Extraction, Image Recognition" },
+      { num: "04", name: "Recommendation Systems", details: "Collaborative & Content-Based Filtering" },
+      { num: "05", name: "AI API Integration", details: "OpenAI & Gemini APIs, Chatbots & AI Agents" },
+    ],
+    stickyTop: "calc(12vh + 16.5rem)",
+    marginBottom: "16rem",
+  },
+  {
+    id: "05",
+    number: "(05)",
+    title: "Databases",
+    description: "Relational schema design, ORM integration, real-time BaaS, and database migrations.",
+    skills: [
+      { num: "01", name: "SQL Server & PostgreSQL", details: "Relational Schemas, Stored Procedures, Indexing" },
+      { num: "02", name: "Supabase", details: "Real-time Postgres BaaS, Auth, Storage, Edge Functions" },
+      { num: "03", name: "Entity Framework Core", details: "C# ORM, Code-First Migrations, LINQ Queries" },
+      { num: "04", name: "Database Design", details: "Schema Normalization, Performance Optimization" },
+    ],
+    stickyTop: "calc(12vh + 22rem)",
+    marginBottom: "12rem",
+  },
+  {
+    id: "06",
+    number: "(06)",
+    title: "Tools & DevOps",
+    description: "Developer tooling, containerization, API testing, IDEs, and continuous integration/deployment.",
+    skills: [
+      { num: "01", name: "Git & GitHub", details: "Version Control, Branching Strategies, CI Workflows" },
+      { num: "02", name: "Docker", details: "Containerization, Multi-Stage Builds, Isolated Environments" },
+      { num: "03", name: "Postman & API Testing", details: "Endpoint Validation, Automated Collection Testing" },
+      { num: "04", name: "Visual Studio & VS Code", details: "Full IDE Debugging, Profiling, Extensions" },
+      { num: "05", name: "Jupyter & Data Notebooks", details: "Interactive Data Exploration, ML Prototyping" },
+      { num: "06", name: "Vercel & Render", details: "Cloud Hosting, Edge Deployment, Continuous Integration" },
+    ],
+    stickyTop: "calc(12vh + 27.5rem)",
+    marginBottom: "6rem",
+  },
+];
 
+// ─── Split-flap hover skill item component ───
+function SplitFlapItem({ num, name, details }: { num: string; name: string; details: string }) {
   return (
-    <div className="marquee-row overflow-hidden relative py-2" style={{ willChange: "transform" }}>
-      <div
-        className={
-          direction === "left" ? "marquee-track-left" : "marquee-track-right"
-        }
-        style={{
-          display: "flex",
-          width: "max-content",
-          willChange: "transform",
-        }}
-      >
-        {doubled.map((skill, i) => (
-          <SkillPill key={`${skill.name}-${i}`} skill={skill} accent={accent} />
-        ))}
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-[#222] group cursor-default gap-1">
+      <div className="flex items-center gap-4">
+        <span
+          className="font-mono text-xs text-[#555] group-hover:text-[#0BE7FF] transition-colors"
+          style={{ fontFamily: "var(--font-mono, monospace)" }}
+        >
+          {num}
+        </span>
+
+        {/* Split-flap container */}
+        <span className="relative block overflow-hidden h-[1.5em] select-none">
+          {/* Top text (default) */}
+          <span
+            className="block font-syne font-semibold text-lg text-white transition-transform duration-400 ease-[cubic-bezier(.51,.92,.24,1.15)] group-hover:-translate-y-full"
+            style={{ fontFamily: "var(--font-syne, sans-serif)", transitionTimingFunction: EASE }}
+          >
+            {name}
+          </span>
+
+          {/* Bottom text (hover reveal in cyan) */}
+          <span
+            aria-hidden="true"
+            className="absolute top-0 left-0 block font-syne font-semibold text-lg text-[#0BE7FF] transition-transform duration-400 ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-full group-hover:translate-y-0"
+            style={{ fontFamily: "var(--font-syne, sans-serif)", transitionTimingFunction: EASE }}
+          >
+            {name}
+          </span>
+        </span>
       </div>
+
+      <span
+        className="font-mono text-xs text-[#777] sm:text-right"
+        style={{ fontFamily: "var(--font-mono, monospace)" }}
+      >
+        {details}
+      </span>
     </div>
   );
 }
 
-/* ── Tool Chip (no tooltip needed) ───────────── */
-function ToolChip({ tool, index }: { tool: { name: string; icon: string }; index: number }) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.85 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      whileHover={{ scale: 1.05, borderColor: "#0BE7FF" }}
-      viewport={{ once: true, margin: "0px 0px -20px 0px" }}
-      transition={{ delay: index * 0.04, duration: 0.35 }}
-      className="flex items-center gap-2 px-4 py-2.5 border border-[#1e1e1e] bg-[#0a0a0a] hover:border-[#0BE7FF] transition-colors"
-    >
-      <span className="text-base leading-none">{tool.icon}</span>
-      <span
-        className="font-mono text-xs text-[#777] tracking-wider"
-        style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
-      >
-        {tool.name}
-      </span>
-    </motion.div>
-  );
-}
-
-/* ── Main Export ─────────────────────────────── */
 export default function Skills() {
-  return (
-    <section id="skills" className="py-32 overflow-hidden">
+  const containerRef = useRef<HTMLDivElement>(null);
 
-      {/* Padded heading area */}
-      <div className="px-8 md:px-16 max-w-[1400px] mx-auto mb-16">
+  return (
+    <section id="skills" className="section-padding bg-[#080808] relative">
+      {/* Section Header */}
+      <div className="relative flex w-full flex-col gap-y-8 md:gap-y-16 mb-16 md:mb-24">
         <ScrollReveal>
-          <p
-            className="text-[10px] tracking-[0.4em] text-[#0BE7FF] uppercase mb-6 font-mono"
-            style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
-          >
-            02 · Skills
-          </p>
+          <h1 className="section-heading text-[var(--c-accent,#0BE7FF)] overflow-hidden">
+            <span className="inline-block">WHAT I DO /</span>
+          </h1>
         </ScrollReveal>
 
-        <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
-          <ScrollReveal delay={0.05}>
-            <h2
-              className="font-syne font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight text-white"
-              style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
-            >
-              What I work
-              <br />
-              <span className="text-[#0BE7FF]">with.</span>
-            </h2>
-          </ScrollReveal>
-
-          <ScrollReveal delay={0.1}>
-            <p
-              className="text-[#555] text-sm max-w-xs font-mono"
-              style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
-            >
-              Hover any skill to see
-              <br className="hidden md:block" /> proficiency level.
-            </p>
-          </ScrollReveal>
+        <div className="flex flex-col gap-x-8 gap-y-2 sm:flex-row sm:items-start md:col-start-6">
+          <span className="font-medium uppercase text-nowrap text-[var(--c-text2,#555)] text-sm tracking-widest">
+            (SERVICES & SKILLS)
+          </span>
+          <p className="max-w-[32ch] text-balance font-medium leading-relaxed text-[var(--c-text3,#888)] text-base">
+            Structured technical capabilities across 6 core engineering domains.
+          </p>
         </div>
       </div>
 
-      {/* ── Marquee Rows ── */}
-      <div className="space-y-3 mb-6">
-        {/* Row 1 — Proficient, scrolls left */}
-        <ScrollReveal delay={0.08}>
-          <div>
-            <div className="px-8 md:px-16 max-w-[1400px] mx-auto mb-2">
+      {/* Sticky Stacking Accordion Sections */}
+      <div ref={containerRef} className="flex flex-col relative w-full">
+        {skillDomains.map((domain) => (
+          <div
+            key={domain.id}
+            className="sticky border-t border-[#222] bg-[#0c0c0c] p-6 sm:p-10 rounded-2xl shadow-2xl transition-shadow duration-300"
+            style={{
+              top: domain.stickyTop,
+              marginBottom: domain.marginBottom,
+            }}
+          >
+            {/* Header row */}
+            <div className="grid grid-cols-12 items-center gap-4 text-left">
               <span
-                className="text-[10px] font-mono text-[#444] tracking-[0.25em] uppercase"
-                style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
+                className="col-span-2 font-mono text-xl font-bold text-[#0BE7FF]"
+                style={{ fontFamily: "var(--font-mono, monospace)" }}
               >
-                Proficient ↔
+                {domain.number}
               </span>
-            </div>
-            <MarqueeRow
-              skills={proSkills as Skill[]}
-              direction="left"
-              accent={true}
-            />
-          </div>
-        </ScrollReveal>
-
-        {/* Row 2 — Learning, scrolls right */}
-        <ScrollReveal delay={0.14}>
-          <div>
-            <div className="px-8 md:px-16 max-w-[1400px] mx-auto mb-2">
-              <span
-                className="text-[10px] font-mono text-[#444] tracking-[0.25em] uppercase"
-                style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
+              <h3
+                className="col-span-10 text-2xl sm:text-4xl font-bold text-white tracking-tight"
+                style={{ fontFamily: "var(--font-syne, sans-serif)" }}
               >
-                Currently learning ↔
-              </span>
+                {domain.title}
+              </h3>
             </div>
-            <MarqueeRow
-              skills={learningSkills as Skill[]}
-              direction="right"
-              accent={false}
-            />
-          </div>
-        </ScrollReveal>
-      </div>
 
-      {/* ── Tools Grid ── */}
-      <div className="px-8 md:px-16 max-w-[1400px] mx-auto mt-16">
-        <ScrollReveal delay={0.18}>
-          <div className="pt-10 border-t border-[#1e1e1e]">
-            <p
-              className="text-[10px] tracking-[0.3em] text-[#444] uppercase mb-6 font-mono"
-              style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
-            >
-              Tools &amp; Environment
-            </p>
-            <div className="flex flex-wrap gap-2.5">
-              {tools.map((tool, i) => (
-                <ToolChip key={tool.name} tool={tool} index={i} />
-              ))}
+            {/* Content row */}
+            <div className="grid grid-cols-12 pt-6 sm:pt-10 gap-6">
+              <div className="col-span-12 lg:col-span-4 lg:col-start-3">
+                <p className="text-sm text-[#888] leading-relaxed">
+                  {domain.description}
+                </p>
+              </div>
+
+              <div className="col-span-12 lg:col-span-6 lg:col-start-7 flex flex-col divide-y divide-[#1e1e1e]">
+                {domain.skills.map((skill) => (
+                  <SplitFlapItem
+                    key={skill.name}
+                    num={skill.num}
+                    name={skill.name}
+                    details={skill.details}
+                  />
+                ))}
+              </div>
             </div>
           </div>
-        </ScrollReveal>
+        ))}
       </div>
     </section>
   );

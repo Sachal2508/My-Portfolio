@@ -19,31 +19,30 @@ export default function SmoothScroll({
     if (reduceMotion || coarsePointer || touchDevice) return;
 
     const lenis = new Lenis({
-      duration: 0.85,
-      easing: (t) => 1 - Math.pow(1 - t, 4),
+      duration: 0.7,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Snappy, butter-smooth exponential ease
       smoothWheel: true,
-      wheelMultiplier: 0.95,
+      wheelMultiplier: 1.0,
       touchMultiplier: 1.5,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
 
+    let rafId: number;
     const raf = (time: number) => {
-      lenis.raf(time * 1000);
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
     };
 
-    gsap.ticker.add(raf);
-    gsap.ticker.lagSmoothing(500, 33);
+    rafId = requestAnimationFrame(raf);
 
     const refresh = () => ScrollTrigger.refresh();
     if ("fonts" in document) {
       document.fonts.ready.then(refresh).catch(refresh);
-    } else {
-      requestAnimationFrame(refresh);
     }
 
     return () => {
-      gsap.ticker.remove(raf);
+      cancelAnimationFrame(rafId);
       lenis.destroy();
     };
   }, []);

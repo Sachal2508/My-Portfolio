@@ -78,12 +78,12 @@ export default function Hero() {
   return (
     <section
       id="home"
-      className="relative min-h-screen flex flex-col items-start justify-end pb-20 px-8 md:px-16 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-start justify-center pt-36 md:pt-48 pb-20 px-8 md:px-16 overflow-hidden bg-[#080808]"
     >
       {/* Big parallax bg text */}
       <div
         ref={parallaxRef}
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
+        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none opacity-40"
         aria-hidden
       >
         <span
@@ -91,7 +91,7 @@ export default function Hero() {
           style={{
             fontFamily: "var(--font-syne, Syne, sans-serif)",
             color: "transparent",
-            WebkitTextStroke: "1px rgba(255,255,255,0.04)",
+            WebkitTextStroke: "1px rgba(255,255,255,0.06)",
           }}
         >
           SACHAL
@@ -103,17 +103,17 @@ export default function Hero() {
         initial={{ scaleX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute top-[30%] left-8 md:left-16 w-14 h-px bg-[#0BE7FF] origin-left"
+        className="absolute top-[28%] left-8 md:left-16 w-14 h-px bg-[#0BE7FF] origin-left"
       />
 
       {/* Hero content */}
-      <div className="relative z-10 max-w-[900px]">
+      <div className="relative z-10 max-w-[900px] pt-6">
         {/* Greeting */}
         <motion.p
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="font-mono text-[#0BE7FF] text-sm tracking-[0.3em] uppercase mb-6"
+          className="font-mono text-[#0BE7FF] text-sm tracking-[0.3em] uppercase mb-4"
           style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
         >
           Hi, I am
@@ -170,7 +170,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.2, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="text-[#555] text-base md:text-lg leading-relaxed max-w-lg mb-10"
+          className="text-[#aaa] text-base md:text-lg leading-relaxed max-w-lg mb-10"
         >
           Passionate about building modern, scalable applications and
           exploring the frontiers of AI/ML.
@@ -256,16 +256,14 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 0.8 }}
-        className="absolute top-28 right-8 md:right-16 text-right"
+        className="absolute top-28 right-8 md:right-16 text-right z-20"
       >
-        <p
-          className="text-[10px] text-[#333] tracking-[0.2em] uppercase font-mono"
+        <div
+          className="text-xs text-[#aaa] tracking-widest uppercase font-mono border border-white/10 px-4 py-2 rounded-full bg-black/60 backdrop-blur-md"
           style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
         >
-          Full Stack Developer
-          <br />
-          FAST NUCES · Lahore
-        </p>
+          Full Stack Developer <span className="text-[#0BE7FF]">•</span> FAST NUCES
+        </div>
       </motion.div>
     </section>
   );

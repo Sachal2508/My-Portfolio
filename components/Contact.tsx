@@ -26,7 +26,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-32 px-8 md:px-16 max-w-[1400px] mx-auto"
+      className="py-32 px-8 md:px-16 max-w-[1400px] mx-auto bg-[#080808]"
     >
       {/* Section label */}
       <ScrollReveal>
@@ -54,9 +54,8 @@ export default function Contact() {
       </ScrollReveal>
 
       <ScrollReveal delay={0.1}>
-        <p className="text-[#444] text-sm mb-16 max-w-sm">
-          Open to collaborations, freelance projects, and interesting
-          conversations. Reach out anytime.
+        <p className="text-[#aaa] text-sm md:text-base mb-16 max-w-md leading-relaxed">
+          Open to collaborations, freelance projects, full-stack opportunities, and interesting technical conversations. Reach out anytime.
         </p>
       </ScrollReveal>
 
@@ -64,23 +63,23 @@ export default function Contact() {
       <ScrollReveal delay={0.15}>
         <MagneticElement strength={0.12}>
           <a
-            href="mailto:sachalkool@gmail.com"
+            href="mailto:sachalm58@gmail.com"
             className="group inline-flex items-center gap-4 hover-lift"
           >
             <span
-              className="font-syne font-bold text-[#222] group-hover:text-white transition-colors duration-500"
+              className="font-syne font-bold text-white group-hover:text-[#0BE7FF] transition-colors duration-500"
               style={{
                 fontFamily: "var(--font-syne, Syne, sans-serif)",
-                fontSize: "clamp(1.2rem, 3.5vw, 2.8rem)",
-                borderBottom: "1px solid #1c1c1c",
+                fontSize: "clamp(1.4rem, 3.5vw, 2.8rem)",
+                borderBottom: "1px solid #333",
               }}
             >
-              sachalkool@gmail.com
+              sachalm58@gmail.com
             </span>
             <motion.span
               animate={{ x: [0, 6, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="text-[#0BE7FF] text-2xl opacity-0 group-hover:opacity-100 transition-opacity"
+              className="text-[#0BE7FF] text-2xl opacity-80 group-hover:opacity-100 transition-opacity"
             >
               ↗
             </motion.span>
@@ -108,7 +107,7 @@ export default function Contact() {
               className="flex items-center gap-6 group"
             >
               <span
-                className="text-[10px] tracking-widest text-[#333] uppercase font-mono w-20"
+                className="text-[10px] tracking-widest text-[#777] uppercase font-mono w-20"
                 style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
               >
                 {social.label}
@@ -117,7 +116,7 @@ export default function Contact() {
                 href={social.href}
                 target="_blank"
                 rel="noreferrer"
-                className="hover-lift font-syne font-semibold text-[#555] hover:text-white transition-colors text-base group-hover:text-[#0BE7FF]"
+                className="hover-lift font-syne font-semibold text-[#ccc] hover:text-white transition-colors text-base group-hover:text-[#0BE7FF]"
                 style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
               >
                 {social.handle} ↗
@@ -130,13 +129,13 @@ export default function Contact() {
         <ScrollReveal delay={0.3}>
           <div className="text-right">
             <p
-              className="text-[10px] tracking-[0.3em] text-[#222] uppercase mb-2 font-mono"
+              className="text-[10px] tracking-[0.3em] text-[#777] uppercase mb-2 font-mono"
               style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
             >
               Based in
             </p>
             <p
-              className="font-syne font-bold text-2xl text-[#1a1a1a]"
+              className="font-syne font-bold text-2xl text-white"
               style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
             >
               Lahore, Pakistan

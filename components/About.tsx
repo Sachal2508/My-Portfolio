@@ -73,7 +73,7 @@ function TimelineItem({
 
 export default function About() {
   return (
-    <section id="about" className="py-32 px-8 md:px-16 max-w-[1400px] mx-auto">
+    <section id="about" className="py-32 px-8 md:px-16 max-w-[1400px] mx-auto bg-[#080808]">
       {/* Section label */}
       <ScrollReveal>
         <p
@@ -99,7 +99,7 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.1}>
-            <p className="text-[#666] leading-relaxed mb-5 text-[15px]">
+            <p className="text-[#bbb] leading-relaxed mb-5 text-[15px]">
               I&apos;m Muhammad Sachal, a developer specializing in Python and
               C/C++ who loves solving real-world problems with technology.
               Fast, clean, and scalable — that&apos;s how I build.
@@ -107,7 +107,7 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.15}>
-            <p className="text-[#555] leading-relaxed mb-5 text-[15px]">
+            <p className="text-[#aaa] leading-relaxed mb-5 text-[15px]">
               With experience across C/C++, Assembly (Intel 8086), ASP.NET Core,
               and Python, I continuously explore emerging tech like AI/ML and
               cloud computing. I thrive in collaborative environments and love
@@ -116,7 +116,7 @@ export default function About() {
           </ScrollReveal>
 
           <ScrollReveal delay={0.2}>
-            <p className="text-[#444] leading-relaxed text-[15px]">
+            <p className="text-[#888] leading-relaxed text-[15px]">
               Beyond code, I enjoy learning languages (Indonesian, Japanese,
               Arabic), reading about AI advancements, and building personal side
               projects that scratch my curiosity.
