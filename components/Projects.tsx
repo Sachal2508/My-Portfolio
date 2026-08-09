@@ -43,7 +43,7 @@ const projects: Project[] = [
       "A companion app for FlexPro with its branded logo, download access, and the source repository for the app.",
     tags: ["Mobile App", "React Native", "Firebase"],
     links: {
-      live: "https://studytrove.vercel.app/",
+      live: "https://github.com/Sachal2508/FlexPro-App/releases/tag/v1.0.2",
       ctaLabel: "Download →",
       github: "https://github.com/Sachal2508/FlexPro-App",
     },

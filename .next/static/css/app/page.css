@@ -1,0 +1,215 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[7].use[3]!./components/BubbleMenu.module.css ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************/
+.BubbleMenu_root__qnLyS {
+  position: fixed;
+  top: 1.25rem;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  pointer-events: none;
+}
+
+.BubbleMenu_fixed___2G4N { position: fixed; }
+.BubbleMenu_absolute__I5ikv { position: absolute; }
+
+.BubbleMenu_shell__bJu0C {
+  width: min(1400px, calc(100% - 2rem));
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.875rem;
+}
+
+.BubbleMenu_actions__9CT2p {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  pointer-events: auto;
+}
+
+.BubbleMenu_actionsFixed__1cYEe {
+  position: fixed;
+  top: 1.25rem;
+  right: 2rem;
+  z-index: 1110;
+}
+
+.BubbleMenu_bubble__KMqRW,
+.BubbleMenu_brandBubble__TUfxN {
+  --bubble-size: 52px;
+  height: var(--bubble-size);
+  min-height: var(--bubble-size);
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  pointer-events: auto;
+}
+
+.BubbleMenu_brandBubble__TUfxN {
+  padding: 0 1rem;
+  min-width: 7rem;
+  font-family: var(--font-syne, Syne, sans-serif);
+  font-weight: 800;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  font-size: 0.75rem;
+}
+
+.BubbleMenu_toggleBubble__O4kqy {
+  width: var(--bubble-size);
+  padding: 0;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.BubbleMenu_toggleBubble__O4kqy:focus-visible,
+.BubbleMenu_pill__eY6V_:focus-visible,
+.BubbleMenu_backdrop__3xmIe:focus-visible {
+  outline: 2px solid #0be7ff;
+  outline-offset: 3px;
+}
+
+.BubbleMenu_menuLine__L9lz_ {
+  width: 1.15rem;
+  height: 2px;
+  border-radius: 999px;
+  display: block;
+  transform-origin: center;
+  transition: transform 220ms ease, opacity 220ms ease, width 220ms ease;
+}
+
+.BubbleMenu_shortLine__DZ8JF { width: 0.8rem; }
+
+.BubbleMenu_open__ouF8w .BubbleMenu_menuLine__L9lz_:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.BubbleMenu_open__ouF8w .BubbleMenu_shortLine__DZ8JF {
+  width: 1.15rem;
+  transform: translateY(-4px) rotate(-45deg);
+}
+
+/* ─── Overlay ─────────────────────────────────────── */
+
+.BubbleMenu_overlay__Ebyn4 {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1090;
+}
+
+.BubbleMenu_backdrop__3xmIe {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(4, 4, 6, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.BubbleMenu_panel__XhYz5 {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 2rem 2rem;
+  pointer-events: none;
+}
+
+/* ─── List ────────────────────────────────────────── */
+
+.BubbleMenu_list__vF0aD {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  pointer-events: auto;
+}
+
+.BubbleMenu_listItem__Khg6o {
+  display: flex;
+  justify-content: center;
+}
+
+/* ─── Giant text link ─────────────────────────────── */
+
+.BubbleMenu_pill__eY6V_ {
+  --pill-color: #f5f5f5;
+  --hover-color: #f5f5f5;
+  --accent: #f5f5f5;
+
+  display: block;
+  font-family: var(--font-syne, Syne, sans-serif);
+  font-size: clamp(2.8rem, 7vw, 6rem);
+  font-weight: 900;
+  letter-spacing: -0.01em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.18);
+  line-height: 1.1;
+  padding: 0.15em 0.4em;
+  transition: color 200ms ease, transform 200ms ease;
+  will-change: transform, opacity;
+  cursor: pointer;
+}
+
+.BubbleMenu_pill__eY6V_:hover {
+  color: var(--accent);
+  transform: translateX(6px);
+}
+
+.BubbleMenu_pill__eY6V_:active {
+  transform: translateX(4px) scale(0.98);
+}
+
+.BubbleMenu_pillLabel__0Q9Ay {
+  display: block;
+  will-change: transform, opacity;
+}
+
+/* ─── Responsive ──────────────────────────────────── */
+
+@media (max-width: 640px) {
+  .BubbleMenu_shell__bJu0C {
+    width: calc(100% - 1rem);
+  }
+
+  .BubbleMenu_actions__9CT2p { gap: 0.5rem; }
+
+  .BubbleMenu_actionsFixed__1cYEe {
+    top: 1rem;
+    right: 1rem;
+  }
+
+  .BubbleMenu_brandBubble__TUfxN {
+    min-width: 6.4rem;
+    padding: 0 0.9rem;
+  }
+
+  .BubbleMenu_panel__XhYz5 {
+    padding-top: 5rem;
+    padding-left: 1.5rem;
+    align-items: flex-start;
+  }
+
+  .BubbleMenu_list__vF0aD { align-items: flex-start; }
+
+  .BubbleMenu_pill__eY6V_ {
+    font-size: clamp(2.2rem, 11vw, 3rem);
+    padding: 0.12em 0;
+  }
+}
