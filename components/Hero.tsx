@@ -107,7 +107,7 @@ export default function Hero() {
       />
 
       {/* Hero content */}
-      <div className="relative z-10 max-w-[900px] pt-6">
+      <div className="relative z-10 max-w-[1100px] w-full pt-6">
         {/* Greeting */}
         <motion.p
           initial={{ opacity: 0, x: -20 }}
@@ -119,12 +119,12 @@ export default function Hero() {
           Hi, I am
         </motion.p>
 
-        {/* Name — characters stagger in */}
+        {/* Name — characters stagger in on one single line */}
         <div
-          className="overflow-hidden"
+          className="overflow-hidden w-full"
           aria-label="Muhammad Sachal"
         >
-          <div className="flex flex-wrap">
+          <div className="flex flex-nowrap whitespace-nowrap items-center">
             {NAME_CHARS.map((char, i) => (
               <motion.span
                 key={i}
@@ -135,10 +135,10 @@ export default function Hero() {
                   delay: 0.4 + i * 0.06,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="font-syne font-extrabold leading-none tracking-tight"
+                className="font-syne font-extrabold leading-none tracking-tight select-none"
                 style={{
                   fontFamily: "var(--font-syne, Syne, sans-serif)",
-                  fontSize: "clamp(4rem, 14vw, 13rem)",
+                  fontSize: "clamp(3.2rem, 14.5vw, 10.5rem)",
                   color: "var(--c-text, #f0f0f0)",
                   display: "inline-block",
                 }}

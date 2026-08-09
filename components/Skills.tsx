@@ -113,7 +113,7 @@ function SplitFlapItem({ num, name, details }: { num: string; name: string; deta
     <div className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-[#222] group cursor-default gap-1">
       <div className="flex items-center gap-4">
         <span
-          className="font-mono text-xs text-[#555] group-hover:text-[#0BE7FF] transition-colors"
+          className="font-mono text-xs text-[#666] group-hover:text-[#0BE7FF] transition-colors"
           style={{ fontFamily: "var(--font-mono, monospace)" }}
         >
           {num}
@@ -141,7 +141,7 @@ function SplitFlapItem({ num, name, details }: { num: string; name: string; deta
       </div>
 
       <span
-        className="font-mono text-xs text-[#777] sm:text-right"
+        className="font-mono text-xs text-[#888] sm:text-right"
         style={{ fontFamily: "var(--font-mono, monospace)" }}
       >
         {details}
@@ -164,10 +164,10 @@ export default function Skills() {
         </ScrollReveal>
 
         <div className="flex flex-col gap-x-8 gap-y-2 sm:flex-row sm:items-start md:col-start-6">
-          <span className="font-medium uppercase text-nowrap text-[var(--c-text2,#555)] text-sm tracking-widest">
+          <span className="font-medium uppercase text-nowrap text-[#aaa] text-sm tracking-widest">
             (SERVICES & SKILLS)
           </span>
-          <p className="max-w-[32ch] text-balance font-medium leading-relaxed text-[var(--c-text3,#888)] text-base">
+          <p className="max-w-[32ch] text-balance font-medium leading-relaxed text-[#888] text-base">
             Structured technical capabilities across 6 core engineering domains.
           </p>
         </div>

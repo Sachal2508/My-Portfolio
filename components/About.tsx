@@ -65,8 +65,8 @@ function TimelineItem({
       >
         {item.degree}
       </h4>
-      <p className="text-[#555] text-sm">{item.school}</p>
-      <p className="text-[#333] text-xs mt-1 font-mono">{item.note}</p>
+      <p className="text-[#aaa] text-sm">{item.school}</p>
+      <p className="text-[#666] text-xs mt-1 font-mono">{item.note}</p>
     </motion.div>
   );
 }
@@ -138,7 +138,7 @@ export default function About() {
                   >
                     {stat.num}
                   </p>
-                  <p className="text-[#444] text-xs tracking-widest uppercase mt-1">
+                  <p className="text-[#666] text-xs tracking-widest uppercase mt-1">
                     {stat.label}
                   </p>
                 </div>
@@ -168,7 +168,7 @@ export default function About() {
           {/* Education Timeline */}
           <ScrollReveal delay={0.08}>
             <h3
-              className="font-syne font-bold text-xs tracking-[0.3em] uppercase text-[#444] mb-10"
+              className="font-syne font-bold text-xs tracking-[0.3em] uppercase text-[#666] mb-10"
               style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
             >
               Education
@@ -190,7 +190,7 @@ export default function About() {
                   (t) => (
                     <span
                       key={t}
-                      className="px-3 py-1 text-xs border border-[#222] text-[#444] font-mono"
+                      className="px-3 py-1 text-xs border border-[#333] text-[#888] font-mono"
                     >
                       {t}
                     </span>

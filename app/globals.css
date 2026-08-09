@@ -20,8 +20,8 @@
   --c-border:   #1e1e1e;
   --c-text:     #e8e8e8;
   --c-text2:    #aaaaaa;
-  --c-text3:    #777777;
-  --c-text4:    #555555;
+  --c-text3:    #888888;
+  --c-text4:    #666666;
   --c-ghost:    #282828;
   --c-stroke:   rgba(255,255,255,0.05);
   /* Projects / Skills section aliases */
@@ -36,14 +36,9 @@
    ============================================= */
 *, *::before, *::after { box-sizing: border-box; }
 
-html.cursor-hidden,
-html.cursor-hidden body,
-html.cursor-hidden *,
-html.cursor-hidden *::before,
-html.cursor-hidden *::after,
-html.cursor-hidden button,
-html.cursor-hidden a,
-html.cursor-hidden input {
+/* ── Hide native cursor everywhere — custom cursor replaces it ── */
+html, html *, html *::before, html *::after,
+html body, html button, html a, html input, html textarea, html select {
   cursor: none !important;
 }
 
