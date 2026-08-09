@@ -138,7 +138,7 @@ export default function Hero() {
                 className="font-syne font-extrabold leading-none tracking-tight select-none"
                 style={{
                   fontFamily: "var(--font-syne, Syne, sans-serif)",
-                  fontSize: "clamp(3.2rem, 14.5vw, 10.5rem)",
+                  fontSize: "clamp(2.1rem, 12.5vw, 10.5rem)",
                   color: "var(--c-text, #f0f0f0)",
                   display: "inline-block",
                 }}
