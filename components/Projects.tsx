@@ -197,20 +197,19 @@ export default function Projects() {
                   href={targetUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-2xl p-4 sm:p-8 xl:p-10 border border-[#1e1e1e] bg-gradient-to-br ${project.bgGradient} transition-all duration-500 hover:border-[#0BE7FF]/40 group/card`}
+                  className={`relative flex aspect-[4/3] sm:aspect-square w-full items-center justify-center overflow-hidden rounded-2xl p-3 sm:p-8 xl:p-10 border border-[#1e1e1e] bg-gradient-to-br ${project.bgGradient} transition-all duration-500 hover:border-[#0BE7FF]/40 group/card`}
                 >
                   {/* Inner Preview Window */}
                   <div
                     className="z-10 w-full h-full overflow-hidden rounded-xl shadow-2xl border border-white/10 bg-black/70 backdrop-blur-md transition-transform duration-500 group-hover/card:scale-[1.02] flex items-center justify-center relative"
-                    style={{ aspectRatio: "4/3" }}
                   >
                     {/* Browser top chrome bar for web apps */}
                     {!project.isMobileApp && (
-                      <div className="absolute top-0 left-0 right-0 z-20 flex items-center gap-1.5 px-3 py-2 border-b border-white/10 bg-black/60 backdrop-blur-md">
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-                        <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-                        <span className="ml-2 flex-1 h-4 rounded-full border border-white/10 bg-black/40 px-2 font-mono text-[9px] text-[#666] flex items-center truncate">
+                      <div className="absolute top-0 left-0 right-0 z-20 flex items-center gap-1.5 px-3 py-1.5 sm:py-2 border-b border-white/10 bg-black/60 backdrop-blur-md">
+                        <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#ff5f57]" />
+                        <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#febc2e]" />
+                        <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#28c840]" />
+                        <span className="ml-2 flex-1 h-3.5 sm:h-4 rounded-full border border-white/10 bg-black/40 px-2 font-mono text-[8px] sm:text-[9px] text-[#666] flex items-center truncate">
                           {project.live ? project.live.replace("https://", "") : "github.com"}
                         </span>
                       </div>
@@ -219,9 +218,9 @@ export default function Projects() {
                     {"video" in project && project.video ? (
                       project.isMobileApp ? (
                         /* Mobile App: Sleek portrait phone mockup */
-                        <div className="relative h-[92%] aspect-[9/19] rounded-[2rem] border-4 border-[#282828] bg-black overflow-hidden shadow-2xl flex items-center justify-center my-auto">
+                        <div className="relative h-[90%] aspect-[9/19] rounded-[1.5rem] sm:rounded-[2rem] border-2 sm:border-4 border-[#282828] bg-black overflow-hidden shadow-2xl flex items-center justify-center my-auto">
                           {/* Notch / Dynamic Island */}
-                          <div className="absolute top-2 w-16 h-3 bg-[#181818] rounded-full z-30" />
+                          <div className="absolute top-1.5 w-12 sm:w-16 h-2.5 sm:h-3 bg-[#181818] rounded-full z-30" />
                           <video
                             src={project.video as string}
                             autoPlay
@@ -233,7 +232,7 @@ export default function Projects() {
                         </div>
                       ) : (
                         /* Web App: Full un-zoomed container preview */
-                        <div className="w-full h-full pt-8 flex items-center justify-center bg-black/90 p-2 overflow-hidden">
+                        <div className="w-full h-full pt-6 sm:pt-8 flex items-center justify-center bg-black/90 p-1.5 sm:p-2 overflow-hidden">
                           <video
                             src={project.video as string}
                             autoPlay
@@ -248,7 +247,7 @@ export default function Projects() {
                       /* Static Image Preview */
                       <div className="flex h-full w-full flex-col items-center justify-center relative">
                         {project.logo ? (
-                          <div className="relative w-full h-full flex items-center justify-center overflow-hidden pt-8">
+                          <div className="relative w-full h-full flex items-center justify-center overflow-hidden pt-6 sm:pt-8">
                             <Image
                               src={project.logo}
                               alt={project.title}
@@ -262,7 +261,7 @@ export default function Projects() {
                     )}
 
                     {/* Overlay badge */}
-                    <div className="absolute bottom-3 left-3 right-3 z-20 flex items-center justify-between text-[11px] font-mono text-[#aaa] bg-black/70 px-3 py-1.5 rounded-lg border border-white/10 backdrop-blur-md">
+                    <div className="absolute bottom-2 left-2 right-2 sm:bottom-3 sm:left-3 sm:right-3 z-20 flex items-center justify-between text-[10px] sm:text-[11px] font-mono text-[#aaa] bg-black/80 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg border border-white/10 backdrop-blur-md">
                       <span>{project.category}</span>
                       <span className="text-[#0BE7FF]">{project.year}</span>
                     </div>
@@ -270,16 +269,23 @@ export default function Projects() {
                 </a>
 
                 {/* Card Meta & Action Bar */}
-                <div className="flex flex-col gap-y-4 pt-2">
+                <div className="flex flex-col gap-y-3 sm:gap-y-4 pt-1">
                   <div className="flex flex-col gap-y-1">
                     <div className="flex items-center justify-between">
-                      <span
-                        className="font-mono text-xs text-[#666] uppercase tracking-widest"
-                        style={{ fontFamily: "var(--font-mono, monospace)" }}
-                      >
-                        {project.category}
-                      </span>
-                      <span className="text-xs font-mono text-[#0BE7FF] bg-[#0BE7FF]/10 px-2.5 py-0.5 rounded border border-[#0BE7FF]/20">
+                      <div className="flex items-center gap-2">
+                        {/* Mobile Step Counter Tag */}
+                        <span className="md:hidden font-mono text-xs font-bold text-[#0BE7FF] bg-[#0BE7FF]/10 px-2 py-0.5 rounded border border-[#0BE7FF]/20">
+                          0{i + 1}
+                        </span>
+                        <span
+                          className="font-mono text-xs text-[#777] uppercase tracking-widest"
+                          style={{ fontFamily: "var(--font-mono, monospace)" }}
+                        >
+                          {project.category}
+                        </span>
+                      </div>
+
+                      <span className="text-xs font-mono text-[#0BE7FF] bg-[#0BE7FF]/10 px-2 py-0.5 rounded border border-[#0BE7FF]/20">
                         {project.year}
                       </span>
                     </div>
@@ -294,7 +300,7 @@ export default function Projects() {
                         className="font-bold text-white leading-tight group-hover/title:text-[#0BE7FF] transition-colors"
                         style={{
                           fontFamily: "var(--font-syne, sans-serif)",
-                          fontSize: "clamp(1.75rem, 4vw, 2.75rem)",
+                          fontSize: "clamp(1.5rem, 5vw, 2.75rem)",
                         }}
                       >
                         {project.title}
@@ -308,13 +314,13 @@ export default function Projects() {
                   </p>
 
                   {/* Tags & Action Buttons */}
-                  <div className="flex flex-wrap items-center justify-between gap-4 pt-2 border-t border-[#1a1a1a]">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pt-2 border-t border-[#1a1a1a]">
                     {/* Tech Tags */}
-                    <div className="flex flex-wrap items-center gap-2">
+                    <div className="flex flex-wrap items-center gap-1.5 sm:gap-2">
                       {project.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="px-2.5 py-1 text-[11px] font-mono border border-[#222] bg-[#111] text-[#888] rounded-md"
+                          className="px-2 py-0.5 sm:px-2.5 sm:py-1 text-[10px] sm:text-[11px] font-mono border border-[#222] bg-[#111] text-[#888] rounded-md"
                           style={{ fontFamily: "var(--font-mono, monospace)" }}
                         >
                           {tag}
@@ -323,13 +329,13 @@ export default function Projects() {
                     </div>
 
                     {/* Explicit Visit / Download / GitHub Buttons */}
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto pt-1 sm:pt-0">
                       {project.github && (
                         <a
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md border border-[#333] bg-[#151515] text-xs font-mono text-white hover:border-[#0BE7FF] hover:text-[#0BE7FF] transition-all"
+                          className="flex-1 sm:flex-initial text-center justify-center inline-flex items-center gap-1.5 px-3 py-2 sm:py-1.5 rounded-md border border-[#333] bg-[#151515] text-xs font-mono text-white hover:border-[#0BE7FF] hover:text-[#0BE7FF] transition-all"
                         >
                           GitHub ↗
                         </a>
@@ -339,7 +345,7 @@ export default function Projects() {
                         href={targetUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-md bg-[#0BE7FF] text-black font-semibold text-xs font-mono hover:bg-[#33efff] hover:shadow-[0_0_15px_rgba(11,231,255,0.4)] transition-all"
+                        className="flex-1 sm:flex-initial text-center justify-center inline-flex items-center gap-1.5 px-4 py-2 sm:py-1.5 rounded-md bg-[#0BE7FF] text-black font-semibold text-xs font-mono hover:bg-[#33efff] transition-all"
                       >
                         {project.btnLabel}
                       </a>

@@ -38,7 +38,7 @@ export default function ScrollToTop() {
 
   return (
     <div
-      className={`fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-[900] transition-all duration-400 ease-out ${
+      className={`fixed bottom-5 right-5 sm:bottom-8 sm:right-8 z-[9999] transition-all duration-400 ease-out ${
         visible
           ? "opacity-100 translate-y-0 pointer-events-auto"
           : "opacity-0 translate-y-4 pointer-events-none"
@@ -48,7 +48,7 @@ export default function ScrollToTop() {
         type="button"
         onClick={handleClick}
         aria-label="Scroll to top"
-        className="group relative flex items-center gap-2 h-13 px-3 sm:px-4 py-2 rounded-full border border-[#0BE7FF]/30 bg-black/80 backdrop-blur-md text-[#0BE7FF] shadow-2xl hover:border-[#0BE7FF] hover:bg-[#0BE7FF] hover:text-black hover:shadow-[0_0_25px_rgba(11,231,255,0.5)] transition-all duration-300 active:scale-95"
+        className="group relative flex items-center gap-2 h-12 sm:h-13 px-3.5 sm:px-4 py-2 rounded-full border border-[#0BE7FF]/40 bg-black/90 backdrop-blur-md text-[#0BE7FF] shadow-2xl hover:border-[#0BE7FF] hover:bg-[#0BE7FF] hover:text-black hover:shadow-[0_0_25px_rgba(11,231,255,0.5)] transition-all duration-300 active:scale-95 touch-manipulation"
       >
         {/* SVG Circular Progress Ring */}
         <div className="relative flex items-center justify-center w-8 h-8">

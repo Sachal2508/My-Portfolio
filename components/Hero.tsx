@@ -251,12 +251,12 @@ export default function Hero() {
         </motion.span>
       </motion.button>
 
-      {/* Corner label */}
+      {/* Corner label (Hidden on tiny screens to avoid navbar collision, visible on sm+) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 2, duration: 0.8 }}
-        className="absolute top-28 right-8 md:right-16 text-right z-20"
+        className="hidden sm:block absolute top-28 right-8 md:right-16 text-right z-20"
       >
         <div
           className="text-xs text-[#aaa] tracking-widest uppercase font-mono border border-white/10 px-4 py-2 rounded-full bg-black/60 backdrop-blur-md"
