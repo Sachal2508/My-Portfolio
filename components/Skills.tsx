@@ -11,8 +11,7 @@ interface SkillDomain {
   title: string;
   description: string;
   skills: { num: string; name: string; details: string }[];
-  stickyTop: string;
-  marginBottom: string;
+  zIndex: number;
 }
 
 const skillDomains: SkillDomain[] = [
@@ -28,8 +27,7 @@ const skillDomains: SkillDomain[] = [
       { num: "04", name: "JavaScript & TypeScript", details: "ES6+, Async/Await, Strict Typing, Web & Native" },
       { num: "05", name: "SQL, HTML5 & CSS3", details: "Relational Queries, Semantic Web, Modern Styling" },
     ],
-    stickyTop: "clamp(4.5rem, 10vh, 6rem)",
-    marginBottom: "32rem",
+    zIndex: 10,
   },
   {
     id: "02",
@@ -42,8 +40,7 @@ const skillDomains: SkillDomain[] = [
       { num: "03", name: "Capacitor", details: "Cross-Platform Native Apps, Mobile Plugins, Offline Mode" },
       { num: "04", name: "Modern Web APIs", details: "DOM Manipulation, Canvas, Web Storage, Fetch API" },
     ],
-    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 6.25rem)",
-    marginBottom: "27rem",
+    zIndex: 20,
   },
   {
     id: "03",
@@ -57,8 +54,7 @@ const skillDomains: SkillDomain[] = [
       { num: "04", name: "REST APIs & Serverless", details: "HTTP Endpoints, Edge Execution, JSON Data" },
       { num: "05", name: "Auth & Security", details: "JWT, OAuth, Role-Based Access Control (RBAC)" },
     ],
-    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 12.5rem)",
-    marginBottom: "22rem",
+    zIndex: 30,
   },
   {
     id: "04",
@@ -72,8 +68,7 @@ const skillDomains: SkillDomain[] = [
       { num: "04", name: "Recommendation Systems", details: "Collaborative & Content-Based Filtering" },
       { num: "05", name: "AI API Integration", details: "OpenAI & Gemini APIs, Chatbots & AI Agents" },
     ],
-    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 18.75rem)",
-    marginBottom: "17rem",
+    zIndex: 40,
   },
   {
     id: "05",
@@ -86,8 +81,7 @@ const skillDomains: SkillDomain[] = [
       { num: "03", name: "Entity Framework Core", details: "C# ORM, Code-First Migrations, LINQ Queries" },
       { num: "04", name: "Database Design", details: "Schema Normalization, Performance Optimization" },
     ],
-    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 25rem)",
-    marginBottom: "12rem",
+    zIndex: 50,
   },
   {
     id: "06",
@@ -102,8 +96,7 @@ const skillDomains: SkillDomain[] = [
       { num: "05", name: "Jupyter & Data Notebooks", details: "Interactive Data Exploration, ML Prototyping" },
       { num: "06", name: "Vercel & Render", details: "Cloud Hosting, Edge Deployment, Continuous Integration" },
     ],
-    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 31.25rem)",
-    marginBottom: "6rem",
+    zIndex: 60,
   },
 ];
 
@@ -179,18 +172,17 @@ export default function Skills() {
         </ScrollReveal>
       </div>
 
-      {/* Sticky Stacking Accordion Sections */}
-      <div ref={containerRef} className="flex flex-col relative w-full">
-        {skillDomains.map((domain) => (
+      {/* Full-Card Deck Overlay Stacking (Each new card covers the previous one) */}
+      <div ref={containerRef} className="flex flex-col relative w-full pb-16">
+        {skillDomains.map((domain, index) => (
           <div
             key={domain.id}
-            className="sticky border border-[#1e1e1e] bg-[#0c0c0c] p-5 sm:p-8 rounded-2xl shadow-[0_-15px_35px_rgba(0,0,0,0.95)] transition-all duration-300"
+            className="sticky top-20 sm:top-24 border border-[#222] bg-[#0c0c0c] p-6 sm:p-10 rounded-2xl shadow-[0_-20px_50px_rgba(0,0,0,0.95)] transition-all duration-300 mb-28 sm:mb-40"
             style={{
-              top: domain.stickyTop,
-              marginBottom: domain.marginBottom,
+              zIndex: domain.zIndex,
             }}
           >
-            {/* Dedicated Header Row */}
+            {/* Header Row */}
             <div className="flex items-center gap-3 sm:gap-4 pb-4 sm:pb-6 border-b border-[#1c1c1c]">
               <span
                 className="font-mono text-base sm:text-xl font-bold text-[#0BE7FF] shrink-0"
@@ -199,7 +191,7 @@ export default function Skills() {
                 {domain.number}
               </span>
               <h3
-                className="text-lg sm:text-2xl lg:text-3xl font-bold text-white tracking-tight truncate"
+                className="text-xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight"
                 style={{ fontFamily: "var(--font-syne, sans-serif)" }}
               >
                 {domain.title}
@@ -207,9 +199,9 @@ export default function Skills() {
             </div>
 
             {/* Content Row */}
-            <div className="grid grid-cols-12 pt-4 sm:pt-8 gap-4 sm:gap-6">
+            <div className="grid grid-cols-12 pt-6 sm:pt-8 gap-4 sm:gap-6">
               <div className="col-span-12 lg:col-span-4">
-                <p className="text-xs sm:text-sm text-[#999] leading-relaxed">
+                <p className="text-sm text-[#999] leading-relaxed">
                   {domain.description}
                 </p>
               </div>
