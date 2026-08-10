@@ -233,12 +233,15 @@ html.light .menu-line {
   padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 6vw, 6rem);
 }
 
-/* Large display heading used in Works / Skills section titles */
+/* Large display heading used across section titles */
 .section-heading {
   font-family: var(--font-syne);
-  font-size: clamp(2.5rem, 7vw, 6rem);
+  font-size: clamp(1.85rem, 7.2vw, 5.5rem);
   font-weight: 800;
-  line-height: 0.95;
+  line-height: 1.05;
   letter-spacing: -0.02em;
   text-transform: uppercase;
+  color: #ffffff !important;
+  word-break: normal;
+  overflow-wrap: break-word;
 }

@@ -123,19 +123,19 @@ export default function Projects() {
       className="section-padding bg-[var(--bg-dark,#080808)] relative"
     >
       {/* ── Section header ── */}
-      <div className="relative flex w-full flex-col gap-y-8 md:gap-y-16">
-        <h1 className="section-heading text-[var(--c-accent,#0BE7FF)] overflow-hidden">
-          <span className="inline-block">SELECTED WORKS /</span>
-        </h1>
-
-        <div className="flex flex-col gap-x-8 gap-y-2 sm:flex-row sm:items-start md:col-start-6">
-          <span className="font-medium uppercase text-nowrap text-[var(--c-text2,#555)] text-sm tracking-widest">
-            (PROJECTS)
-          </span>
-          <p className="max-w-[28ch] text-balance font-medium leading-relaxed text-[var(--c-text3,#888)] text-base">
-            Thoughtfully crafted digital experiences that blend utility, performance, and modern aesthetics.
-          </p>
-        </div>
+      <div className="relative flex w-full flex-col gap-y-4 mb-12 md:mb-20">
+        <p
+          className="text-xs sm:text-sm tracking-[0.3em] text-[#0BE7FF] uppercase font-mono"
+          style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
+        >
+          03 · PROJECTS
+        </p>
+        <h2 className="section-heading text-white">
+          SELECTED WORKS /
+        </h2>
+        <p className="max-w-[40ch] font-sans leading-relaxed text-[#aaa] text-sm sm:text-base">
+          Thoughtfully crafted digital experiences that blend utility, performance, and modern aesthetics.
+        </p>
       </div>
 
       {/* ── Grid: sticky counter + scrollable cards ── */}

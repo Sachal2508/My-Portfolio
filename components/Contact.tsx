@@ -31,25 +31,22 @@ export default function Contact() {
       {/* Section label */}
       <ScrollReveal>
         <p
-          className="text-[10px] tracking-[0.4em] text-[#0BE7FF] uppercase mb-6 font-mono"
+          className="text-xs sm:text-sm tracking-[0.3em] text-[#0BE7FF] uppercase mb-4 font-mono"
           style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
         >
-          04 · Contact
+          04 · CONTACT
         </p>
       </ScrollReveal>
 
       {/* Heading */}
       <ScrollReveal delay={0.05}>
         <h2
-          className="font-syne font-extrabold leading-[1.0] tracking-tight text-white mb-8"
+          className="font-syne font-extrabold text-3xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight text-white uppercase mb-8"
           style={{
             fontFamily: "var(--font-syne, Syne, sans-serif)",
-            fontSize: "clamp(2.5rem, 7vw, 6rem)",
           }}
         >
-          Let&apos;s work
-          <br />
-          <span className="text-[#0BE7FF]">together.</span>
+          Let&apos;s work together.
         </h2>
       </ScrollReveal>
 

@@ -40,17 +40,17 @@ export default function Footer() {
           {/* Brand Column */}
           <div className="col-span-12 lg:col-span-6 flex flex-col gap-y-4">
             <h2
-              className="font-syne font-extrabold text-4xl sm:text-6xl tracking-tight text-white uppercase"
+              className="font-syne font-extrabold text-2xl sm:text-4xl md:text-6xl tracking-tight text-white uppercase leading-tight"
               style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
             >
-              MUHAMMAD <span className="text-[#0BE7FF]">SACHAL</span>
+              MUHAMMAD SACHAL
             </h2>
-            <p className="text-sm text-[#888] max-w-md leading-relaxed font-sans">
+            <p className="text-sm text-[#aaa] max-w-md leading-relaxed font-sans">
               Full-Stack Developer & AI/ML Engineer based in Lahore, Pakistan. Crafting scalable applications and modern digital experiences.
             </p>
 
             {/* Pakistan Local Time Stamp */}
-            <div className="mt-4 flex items-center gap-3 text-xs font-mono text-[#aaa] border border-[#222] bg-[#0d0d0d] px-4 py-2 rounded-lg w-fit">
+            <div className="mt-2 flex items-center gap-3 text-xs font-mono text-[#aaa] border border-[#222] bg-[#0d0d0d] px-3.5 py-2 rounded-lg w-fit">
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0BE7FF] opacity-75" />
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-[#0BE7FF]" />
@@ -134,8 +134,8 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Big Decorative Bottom Watermark */}
-        <div className="pt-8 border-t border-[#181818] flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-mono text-[#666]">
+        {/* Bottom Bar */}
+        <div className="pt-8 border-t border-[#181818] flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-[10px] sm:text-xs font-mono text-[#777] leading-relaxed">
           <p>© {year} MUHAMMAD SACHAL. ALL RIGHTS RESERVED.</p>
 
           <div className="flex items-center gap-2">

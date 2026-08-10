@@ -28,8 +28,8 @@ const skillDomains: SkillDomain[] = [
       { num: "04", name: "JavaScript & TypeScript", details: "ES6+, Async/Await, Strict Typing, Web & Native" },
       { num: "05", name: "SQL, HTML5 & CSS3", details: "Relational Queries, Semantic Web, Modern Styling" },
     ],
-    stickyTop: "12vh",
-    marginBottom: "28rem",
+    stickyTop: "clamp(4.5rem, 10vh, 6rem)",
+    marginBottom: "32rem",
   },
   {
     id: "02",
@@ -42,8 +42,8 @@ const skillDomains: SkillDomain[] = [
       { num: "03", name: "Capacitor", details: "Cross-Platform Native Apps, Mobile Plugins, Offline Mode" },
       { num: "04", name: "Modern Web APIs", details: "DOM Manipulation, Canvas, Web Storage, Fetch API" },
     ],
-    stickyTop: "calc(12vh + 5.5rem)",
-    marginBottom: "24rem",
+    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 6.25rem)",
+    marginBottom: "27rem",
   },
   {
     id: "03",
@@ -57,8 +57,8 @@ const skillDomains: SkillDomain[] = [
       { num: "04", name: "REST APIs & Serverless", details: "HTTP Endpoints, Edge Execution, JSON Data" },
       { num: "05", name: "Auth & Security", details: "JWT, OAuth, Role-Based Access Control (RBAC)" },
     ],
-    stickyTop: "calc(12vh + 11rem)",
-    marginBottom: "20rem",
+    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 12.5rem)",
+    marginBottom: "22rem",
   },
   {
     id: "04",
@@ -72,8 +72,8 @@ const skillDomains: SkillDomain[] = [
       { num: "04", name: "Recommendation Systems", details: "Collaborative & Content-Based Filtering" },
       { num: "05", name: "AI API Integration", details: "OpenAI & Gemini APIs, Chatbots & AI Agents" },
     ],
-    stickyTop: "calc(12vh + 16.5rem)",
-    marginBottom: "16rem",
+    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 18.75rem)",
+    marginBottom: "17rem",
   },
   {
     id: "05",
@@ -86,7 +86,7 @@ const skillDomains: SkillDomain[] = [
       { num: "03", name: "Entity Framework Core", details: "C# ORM, Code-First Migrations, LINQ Queries" },
       { num: "04", name: "Database Design", details: "Schema Normalization, Performance Optimization" },
     ],
-    stickyTop: "calc(12vh + 22rem)",
+    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 25rem)",
     marginBottom: "12rem",
   },
   {
@@ -102,7 +102,7 @@ const skillDomains: SkillDomain[] = [
       { num: "05", name: "Jupyter & Data Notebooks", details: "Interactive Data Exploration, ML Prototyping" },
       { num: "06", name: "Vercel & Render", details: "Cloud Hosting, Edge Deployment, Continuous Integration" },
     ],
-    stickyTop: "calc(12vh + 27.5rem)",
+    stickyTop: "calc(clamp(4.5rem, 10vh, 6rem) + 31.25rem)",
     marginBottom: "6rem",
   },
 ];
@@ -110,10 +110,10 @@ const skillDomains: SkillDomain[] = [
 // ─── Split-flap hover skill item component ───
 function SplitFlapItem({ num, name, details }: { num: string; name: string; details: string }) {
   return (
-    <div className="flex flex-col sm:flex-row sm:items-center justify-between py-4 border-b border-[#222] group cursor-default gap-1">
-      <div className="flex items-center gap-4">
+    <div className="flex flex-col sm:flex-row sm:items-center justify-between py-3.5 border-b border-[#1c1c1c] group cursor-default gap-1">
+      <div className="flex items-center gap-3.5">
         <span
-          className="font-mono text-xs text-[#666] group-hover:text-[#0BE7FF] transition-colors"
+          className="font-mono text-xs text-[#666] group-hover:text-[#0BE7FF] transition-colors shrink-0"
           style={{ fontFamily: "var(--font-mono, monospace)" }}
         >
           {num}
@@ -123,7 +123,7 @@ function SplitFlapItem({ num, name, details }: { num: string; name: string; deta
         <span className="relative block overflow-hidden h-[1.5em] select-none">
           {/* Top text (default) */}
           <span
-            className="block font-syne font-semibold text-lg text-white transition-transform duration-400 ease-[cubic-bezier(.51,.92,.24,1.15)] group-hover:-translate-y-full"
+            className="block font-syne font-semibold text-base sm:text-lg text-white transition-transform duration-400 ease-[cubic-bezier(.51,.92,.24,1.15)] group-hover:-translate-y-full"
             style={{ fontFamily: "var(--font-syne, sans-serif)", transitionTimingFunction: EASE }}
           >
             {name}
@@ -132,7 +132,7 @@ function SplitFlapItem({ num, name, details }: { num: string; name: string; deta
           {/* Bottom text (hover reveal in cyan) */}
           <span
             aria-hidden="true"
-            className="absolute top-0 left-0 block font-syne font-semibold text-lg text-[#0BE7FF] transition-transform duration-400 ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-full group-hover:translate-y-0"
+            className="absolute top-0 left-0 block font-syne font-semibold text-base sm:text-lg text-[#0BE7FF] transition-transform duration-400 ease-[cubic-bezier(.51,.92,.24,1.15)] translate-y-full group-hover:translate-y-0"
             style={{ fontFamily: "var(--font-syne, sans-serif)", transitionTimingFunction: EASE }}
           >
             {name}
@@ -156,21 +156,27 @@ export default function Skills() {
   return (
     <section id="skills" className="section-padding bg-[#080808] relative">
       {/* Section Header */}
-      <div className="relative flex w-full flex-col gap-y-8 md:gap-y-16 mb-16 md:mb-24">
+      <div className="relative flex w-full flex-col gap-y-4 mb-12 md:mb-20">
         <ScrollReveal>
-          <h1 className="section-heading text-[var(--c-accent,#0BE7FF)] overflow-hidden">
-            <span className="inline-block">WHAT I DO /</span>
-          </h1>
+          <p
+            className="text-xs sm:text-sm tracking-[0.3em] text-[#0BE7FF] uppercase font-mono"
+            style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
+          >
+            02 · SKILLS
+          </p>
         </ScrollReveal>
 
-        <div className="flex flex-col gap-x-8 gap-y-2 sm:flex-row sm:items-start md:col-start-6">
-          <span className="font-medium uppercase text-nowrap text-[#aaa] text-sm tracking-widest">
-            (SERVICES & SKILLS)
-          </span>
-          <p className="max-w-[32ch] text-balance font-medium leading-relaxed text-[#888] text-base">
+        <ScrollReveal delay={0.05}>
+          <h2 className="section-heading text-white">
+            WHAT I DO /
+          </h2>
+        </ScrollReveal>
+
+        <ScrollReveal delay={0.1}>
+          <p className="max-w-[40ch] font-sans leading-relaxed text-[#aaa] text-sm sm:text-base">
             Structured technical capabilities across 6 core engineering domains.
           </p>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* Sticky Stacking Accordion Sections */}
@@ -178,37 +184,37 @@ export default function Skills() {
         {skillDomains.map((domain) => (
           <div
             key={domain.id}
-            className="sticky border-t border-[#222] bg-[#0c0c0c] p-6 sm:p-10 rounded-2xl shadow-2xl transition-shadow duration-300"
+            className="sticky border border-[#1e1e1e] bg-[#0c0c0c] p-5 sm:p-8 rounded-2xl shadow-[0_-15px_35px_rgba(0,0,0,0.95)] transition-all duration-300"
             style={{
               top: domain.stickyTop,
               marginBottom: domain.marginBottom,
             }}
           >
-            {/* Header row */}
-            <div className="grid grid-cols-12 items-center gap-4 text-left">
+            {/* Dedicated Header Row */}
+            <div className="flex items-center gap-3 sm:gap-4 pb-4 sm:pb-6 border-b border-[#1c1c1c]">
               <span
-                className="col-span-2 font-mono text-xl font-bold text-[#0BE7FF]"
+                className="font-mono text-base sm:text-xl font-bold text-[#0BE7FF] shrink-0"
                 style={{ fontFamily: "var(--font-mono, monospace)" }}
               >
                 {domain.number}
               </span>
               <h3
-                className="col-span-10 text-2xl sm:text-4xl font-bold text-white tracking-tight"
+                className="text-lg sm:text-2xl lg:text-3xl font-bold text-white tracking-tight truncate"
                 style={{ fontFamily: "var(--font-syne, sans-serif)" }}
               >
                 {domain.title}
               </h3>
             </div>
 
-            {/* Content row */}
-            <div className="grid grid-cols-12 pt-6 sm:pt-10 gap-6">
-              <div className="col-span-12 lg:col-span-4 lg:col-start-3">
-                <p className="text-sm text-[#888] leading-relaxed">
+            {/* Content Row */}
+            <div className="grid grid-cols-12 pt-4 sm:pt-8 gap-4 sm:gap-6">
+              <div className="col-span-12 lg:col-span-4">
+                <p className="text-xs sm:text-sm text-[#999] leading-relaxed">
                   {domain.description}
                 </p>
               </div>
 
-              <div className="col-span-12 lg:col-span-6 lg:col-start-7 flex flex-col divide-y divide-[#1e1e1e]">
+              <div className="col-span-12 lg:col-span-8 flex flex-col divide-y divide-[#1c1c1c]">
                 {domain.skills.map((skill) => (
                   <SplitFlapItem
                     key={skill.name}

@@ -77,24 +77,22 @@ export default function About() {
       {/* Section label */}
       <ScrollReveal>
         <p
-          className="text-[10px] tracking-[0.4em] text-[#0BE7FF] uppercase mb-6 font-mono"
+          className="text-xs sm:text-sm tracking-[0.3em] text-[#0BE7FF] uppercase mb-4 font-mono"
           style={{ fontFamily: "var(--font-mono, DM Mono, monospace)" }}
         >
-          01 · About
+          01 · ABOUT
         </p>
       </ScrollReveal>
 
-      <div className="grid md:grid-cols-2 gap-16 md:gap-24 items-start">
+      <div className="grid md:grid-cols-2 gap-12 md:gap-24 items-start">
         {/* Left: Bio */}
         <div>
           <ScrollReveal delay={0.05}>
             <h2
-              className="font-syne font-extrabold text-5xl md:text-6xl leading-[1.05] tracking-tight text-white mb-10"
+              className="font-syne font-extrabold text-3xl sm:text-5xl md:text-6xl leading-[1.08] tracking-tight text-white uppercase mb-8"
               style={{ fontFamily: "var(--font-syne, Syne, sans-serif)" }}
             >
-              Building things
-              <br />
-              <span className="text-[#0BE7FF]">that matter.</span>
+              Building things that matter.
             </h2>
           </ScrollReveal>
 
