@@ -7,6 +7,36 @@ import { useRef, useEffect, useState } from "react";
 const projects = [
   {
     id: 0,
+    category: "Full-Stack Web App",
+    title: "Tailor Shop Management",
+    description: "Enterprise bilingual (Urdu & English) tailor management system for managing customer measurements, multi-item suit orders, kareegar wages, and automated invoicing. Built with React and Node.js, backed by PostgreSQL, and deployed on Koyeb.",
+    video: "/videos/TailorShop.mp4",
+    logo: "/images/TailorShop.png",
+    tags: ["React", "Node.js", "PostgreSQL", "Koyeb"],
+    year: "2025",
+    live: null,
+    github: "https://github.com/Sachal2508/Tailor-Shop",
+    btnLabel: "View Repository ↗",
+    bgGradient: "from-purple-950/40 via-neutral-900 to-black",
+    isMobileApp: false,
+  },
+  {
+    id: 1,
+    category: "AI & RAG Platform",
+    title: "Islam AI",
+    description: "A local-first, search-augmented Islamic AI assistant utilizing FAISS vector indices and local embeddings for millisecond retrieval across 200,000+ Quranic verses, Hadiths, and Tafseer records. Features OpenRouter LLM integration with an offline-capable fine-tuned fallback model, built with Python, FastAPI, and React.",
+    video: "/videos/Islam%20AI.mp4",
+    logo: null,
+    tags: ["Python", "FastAPI", "React", "FAISS", "OpenRouter"],
+    year: "2025",
+    live: null,
+    github: "https://github.com/Sachal2508/Islam-AI",
+    btnLabel: "View Repository ↗",
+    bgGradient: "from-teal-950/40 via-neutral-900 to-black",
+    isMobileApp: false,
+  },
+  {
+    id: 2,
     category: "Web Application",
     title: "StudyTrove",
     description: "A comprehensive digital resource platform for students, providing organized study materials, past papers, and structured course notes.",
@@ -21,7 +51,7 @@ const projects = [
     isMobileApp: false,
   },
   {
-    id: 1,
+    id: 3,
     category: "Mobile App",
     title: "FlexPro",
     description: "Personalized fitness tracking and workout management application built for high-performance exercise routines and goal tracking.",
@@ -36,7 +66,7 @@ const projects = [
     isMobileApp: true,
   },
   {
-    id: 2,
+    id: 4,
     category: "Android App",
     title: "Al-Qur'an",
     description: "Feature-rich offline Quranic application with verse-by-verse recitation, translations, prayer times, Qibla compass, and nearby Masjid finder.",
@@ -51,7 +81,7 @@ const projects = [
     isMobileApp: true,
   },
   {
-    id: 3,
+    id: 5,
     category: "Web Platform & Utilities",
     title: "Nutter Tools",
     description: "An all-in-one developer and web utility suite featuring image converters, text manipulators, color toolkits, and web utility helpers.",
@@ -63,20 +93,6 @@ const projects = [
     github: "https://github.com/Sachal2508/NutterTools",
     btnLabel: "Visit Website ↗",
     bgGradient: "from-indigo-950/40 via-neutral-900 to-black",
-    isMobileApp: false,
-  },
-  {
-    id: 4,
-    category: "Full-Stack Web App",
-    title: "Tailor Shop Management",
-    description: "Enterprise web system for custom tailoring operations: customer measurement records, order processing, inventory, and automated invoicing.",
-    logo: "/images/TailorShop.png",
-    tags: [".NET", "C#", "PostgreSQL"],
-    year: "2024",
-    live: null,
-    github: "https://github.com/Sachal2508/Tailor-Shop-Web-App",
-    btnLabel: "View Repository ↗",
-    bgGradient: "from-purple-950/40 via-neutral-900 to-black",
     isMobileApp: false,
   },
 ];
@@ -210,7 +226,11 @@ export default function Projects() {
                         <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#febc2e]" />
                         <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#28c840]" />
                         <span className="ml-2 flex-1 h-3.5 sm:h-4 rounded-full border border-white/10 bg-black/40 px-2 font-mono text-[8px] sm:text-[9px] text-[#666] flex items-center truncate">
-                          {project.live ? project.live.replace("https://", "") : "github.com"}
+                          {project.live
+                            ? project.live.replace("https://", "")
+                            : project.github
+                            ? project.github.replace("https://", "")
+                            : "github.com"}
                         </span>
                       </div>
                     )}
@@ -330,7 +350,7 @@ export default function Projects() {
 
                     {/* Explicit Visit / Download / GitHub Buttons */}
                     <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto pt-1 sm:pt-0">
-                      {project.github && (
+                      {project.github && project.live && (
                         <a
                           href={project.github}
                           target="_blank"
