@@ -247,6 +247,7 @@ export default function Projects() {
                             loop
                             muted
                             playsInline
+                            preload="auto"
                             className="h-full w-full object-cover transition-transform duration-500 group-hover/card:scale-105"
                           />
                         </div>
@@ -259,6 +260,7 @@ export default function Projects() {
                             loop
                             muted
                             playsInline
+                            preload="auto"
                             className="w-full h-full object-contain transition-transform duration-500 group-hover/card:scale-105 rounded-md"
                           />
                         </div>
